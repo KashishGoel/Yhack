@@ -9,13 +9,13 @@ using namespace std;
 
 void sendString(char MOTD[256], SOCKET Connection);
 
-static bool upp ( false);
-static bool downn( false);
-static bool left ( false);
-static  bool right ( false);
 
 
 void inputsThread(SOCKET Connection) {
+	bool up = false;
+	bool down = false;
+	bool left = false;
+	bool right = false;
 
 	while (true) {
 
