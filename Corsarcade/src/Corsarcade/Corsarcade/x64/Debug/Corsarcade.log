@@ -1,0 +1,4 @@
+﻿  Inputs.cpp
+Client.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+  Corsarcade.vcxproj -> D:\Documents\p\Hackathon\Yhacks\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.exe
+  Corsarcade.vcxproj -> D:\Documents\p\Hackathon\Yhacks\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.pdb (Full PDB)
