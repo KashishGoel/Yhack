@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import Games.Engine;
 import Games.Pong;
 import Games.Tron;
-import Objects.Player;
 import Objects.Snake;
 
 public class Lobby {

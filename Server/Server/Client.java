@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import Games.Engine;
 import Games.Pong;
-import Games.Tron;
 import Objects.Obj;
 import Objects.Player;
 import Objects.Snake;
@@ -49,17 +48,12 @@ public class Client {
 			Pong pong = (Pong) engine;
 			writer.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y, pong.playerOne.y, pong.playerTwo.y);
 			writer.flush();
-<<<<<<< HEAD
+
 //			System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y,
 //					pong.playerOne.y, pong.playerTwo.y);
 		}
 		else if (engine.type == Engine.TRON) {
-=======
-			// System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x,
-			// pong.ball.y,
-			// pong.playerOne.y, pong.playerTwo.y);
-		} else if (engine.type == Engine.TRON) {
->>>>>>> e6112b0a771d4bc9827e950130f6a463e8db1318
+
 			System.out.printf("Tron\n");
 
 			for (int i = 3; i >= 0; i--) {
@@ -75,21 +69,14 @@ public class Client {
 			writer.print("\n");
 
 			writer.flush();
-<<<<<<< HEAD
-			for(int i = 0; i < 4; i++){
-			
-//				System.out.print(Obj.x1Coordinates[i]);
-//				System.out.printf("y1:%g\n", Obj.y1Coordinates[i]);
-//				System.out.print(Obj.x1Coordinates[3]);
-//				System.out.printf("y2:%g\n", Obj.y2Coordinates[i]);
-			}
+
 			//System.out.printf("%.2f %.2f %.2f %.2f\n", tron.snake1.x, tron.snake1.y,
 			//		tron.playerOne.y, tron.playerTwo.y);
-=======
+
 			// System.out.printf("%.2f %.2f %.2f %.2f\n", tron.snake1.x,
 			// tron.snake1.y,
 			// tron.playerOne.y, tron.playerTwo.y);
->>>>>>> e6112b0a771d4bc9827e950130f6a463e8db1318
+
 		}
 
 	}
