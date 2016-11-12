@@ -56,7 +56,6 @@ public class Tron extends Engine{
 				}
 			}
 			
-			object.update();
 		}
 		for(int i = 0; i < 3; i++){
 			Obj.x1Coordinates[i] = Obj.x1Coordinates[i+1];

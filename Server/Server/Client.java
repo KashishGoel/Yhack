@@ -91,48 +91,43 @@ public class Client {
 						break;
 					}
 					
-					for (int i = 0; i < message.length(); i++) {
-						if (message.charAt(i) >= 33) {
-							message = message.substring(i);
-							break;
-						}
-					}
+					message = message.substring(message.indexOf("MSG")+3);
 
 					if (lobby.gameType == Engine.PONG) {
 						switch (message) {
-						case "U":
+						case "UpPressed":
 							player.vSpeed = -0.3;
 							break;
-						case "!U":
+						case "UpReleased":
 							player.vSpeed = 0;
 							break;
-						case "D":
+						case "DownPressed":
 							player.vSpeed = 0.3;
 							break;
-						case "!D":
+						case "DownReleased":
 							player.vSpeed = 0;
 							break;
 						}
 					} else if (lobby.gameType == Engine.TRON) {
 						switch (message) {
-						case "U":
+						case "Up":
 							if (player.vSpeed <=0)
 							{
 							player.vSpeed = -0.1;
 							player.hSpeed = 0;
 							}
 							break;
-						case "D":
-							if(player.hSpeed>=0){
+						case "Down":
+							if(player.vSpeed>=0){
 							player.vSpeed = 0.1;
 							player.hSpeed = 0;}
 							break;
-						case "L":
+						case "Left":
 							if(player.hSpeed<=0){
 							player.hSpeed = -0.1;
 							player.vSpeed = 0;}
 							break;
-						case "R":
+						case "Right":
 							if(player.hSpeed>=0){
 							player.hSpeed = 0.1;
 							player.vSpeed =0;}

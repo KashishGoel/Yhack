@@ -36,8 +36,8 @@ public abstract class Obj {
 	
 	public void update()
 	{
-//		this.x+=hSpeed;
-//		this.y+=vSpeed;
+		this.x+=hSpeed;
+		this.y+=vSpeed;
 
 		
 	}
