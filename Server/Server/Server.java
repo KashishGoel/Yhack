@@ -10,19 +10,19 @@ import java.util.ArrayList;
 
 import Games.Engine;
 import Games.Pong;
-import Objects.Object;
-import Objects.Player;
 
 public class Server implements Runnable {
 
 	public final static int PORT = 4200;
 	ServerSocket server;
 	public static ArrayList<Lobby> lobbies;
+	public static ArrayList<Lobby> toRemove;
 
 	public Server() {
 		try {
 			server = new ServerSocket(PORT);
 			lobbies = new ArrayList<Lobby>();
+			toRemove = new ArrayList<Lobby>();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,7 +69,16 @@ public class Server implements Runnable {
 					}
 				}
 				
-				thisLobby.clients.add(new Client(socket, reader, writer, thisLobby));
+				Client player = new Client(socket, reader, writer, thisLobby);
+				
+				thisLobby.clients.add(player);
+				
+				for (Lobby lobby: toRemove)
+				{
+					lobbies.remove(lobby);
+				}
+				
+				toRemove.clear();
 
 				System.out.println("Player has connected");
 
@@ -80,6 +89,10 @@ public class Server implements Runnable {
 
 		}
 	}
-
+	
+	public static void removeLobby(Lobby lobby)
+	{
+		toRemove.add(lobby);
+	}
 
 }
