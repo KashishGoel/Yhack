@@ -3,6 +3,8 @@ package Server;
 import java.util.ArrayList;
 
 import Games.Engine;
+import Games.Pong;
+import Objects.Player;
 
 public class Lobby {
 
@@ -11,15 +13,32 @@ public class Lobby {
 	Engine engine;
 	char gameType;
 	
-	public Lobby(Engine game)
+	public Lobby(char gameType)
 	{
 		clients = new ArrayList<Client>();
-		this.engine = game;
-		this.gameType = game.type;
+		this.gameType = gameType;
 	}
 	
 	public boolean isFull()
 	{
 		return (clients.size()>= maxPlayers);
+	}
+	
+	public void checkStart()
+	{
+		if (isFull())
+		{
+			switch(gameType)
+			{
+			case Engine.PONG:
+				
+				//engine = new Pong(clients.get(0), clients.get(1));
+				break;
+			case Engine.TRON:
+				break;
+			case Engine.GRAVITY:
+				break;
+			}
+		}
 	}
 }

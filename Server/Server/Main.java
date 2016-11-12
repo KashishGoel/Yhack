@@ -3,7 +3,8 @@ package Server;
 public class Main {
 
 	public static void main(String[] args) {
-		new Server();
+		Thread thread = new Thread(new Server());
+		thread.start();
 
 	}
 

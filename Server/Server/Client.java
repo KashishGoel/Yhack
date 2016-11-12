@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import Objects.Player;
+
 public class Client {
 
 	Socket socket;
 	BufferedReader reader;
 	PrintWriter writer;
 	Lobby lobby;
+	Player player;
 	
 	/**
 	 * 
@@ -36,6 +39,17 @@ public class Client {
 	{
 		@Override
 		public void run() {
+			while (true)
+			{
+				writer.println("okay");
+				writer.flush();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
 		}
 	}

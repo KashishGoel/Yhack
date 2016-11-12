@@ -33,7 +33,7 @@ public class Server implements Runnable {
 	 * Accept clients
 	 */
 	public void run() {
-
+		System.out.println("Waiting for clients");
 		while (true) {
 			try {
 				Socket socket = server.accept();
@@ -42,13 +42,13 @@ public class Server implements Runnable {
 				PrintWriter writer = new PrintWriter(socket.getOutputStream());
 				
 				// Wait for client input for which game
-				char gameType = reader.readLine().charAt(0);
+				char gameType = Engine.PONG;//reader.readLine().charAt(0);
 				
 				Lobby thisLobby = null;
 				
 				for (Lobby lobby: lobbies)
 				{
-					if (!lobby.isFull() && gameType == lobby.gameType)
+					if (!lobby.isFull() && gameType == lobby.gameType && lobby.engine==null)
 					{
 						thisLobby = lobby;
 						break;
@@ -57,21 +57,13 @@ public class Server implements Runnable {
 				
 				if (thisLobby == null)
 				{
-					switch(gameType)
-					{
-					case Engine.PONG:
-						thisLobby = new Lobby(new Pong(gameType));
-						break;
-					case Engine.TRON:
-						break;
-					case Engine.GRAVITY:
-						break;
-					}
+						thisLobby = new Lobby(gameType);
 				}
 				
 				Client player = new Client(socket, reader, writer, thisLobby);
 				
 				thisLobby.clients.add(player);
+				thisLobby.checkStart();
 				
 				for (Lobby lobby: toRemove)
 				{
