@@ -69,7 +69,12 @@ public class Tron extends Engine{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		long start = System.currentTimeMillis();
 		while (true) {
+			if (System.currentTimeMillis()-start>1000)
+			{
+				break;
+			}
 			update();
 			try {
 				Thread.sleep(50);
