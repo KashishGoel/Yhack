@@ -54,8 +54,6 @@ public class Client {
 		}
 		else if (engine.type == Engine.TRON) {
 
-			System.out.printf("Tron\n");
-
 			for (int i = 3; i >= 0; i--) {
 				writer.printf("%.2f %.2f ", Obj.x1Coordinates[i], Obj.y1Coordinates[i]);
 			}
