@@ -23,6 +23,7 @@ public class Client {
 	int playerNo;
 	StringBuilder longMessage;
 	ArrayList<String> toSend;
+	boolean disconnect;
 
 	/**
 	 * 
@@ -37,10 +38,9 @@ public class Client {
 		this.reader = input;
 		this.writer = output;
 		this.lobby = lobby;
+		this.disconnect = false;
 
-		Thread thread = new Thread(new Writer());
-		thread.start();
-		thread = new Thread(new Reader());
+		Thread thread = new Thread(new Reader());
 		thread.start();
 	}
 
@@ -75,32 +75,18 @@ public class Client {
 
 	}
 
-	public class Writer implements Runnable {
-		@Override
-		public void run() {
-			while (true) {
-				// for (String string : toSend) {
-				// writer.println(string);
-				// }
-				// writer.flush();
-				// toSend.clear();
-				try {
-					Thread.sleep(1);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-		}
-	}
-
 	public class Reader implements Runnable {
 		@Override
 		public void run() {
 			while (true) {
 				try {
 					String message = reader.readLine();
+					
+					if (disconnect)
+					{
+						break;
+					}
+					
 					for (int i = 0; i < message.length(); i++) {
 						if (message.charAt(i) >= 33) {
 							message = message.substring(i);
@@ -148,6 +134,24 @@ public class Client {
 				} catch (IOException e) {
 					break;
 				}
+			}
+			if (!disconnect)
+			{
+				Server.removeLobby(lobby);
+			}
+			disconnect = true;
+			writer.close();
+			try {
+				reader.close();
+			} catch (IOException e1) {
+
+				e1.printStackTrace();
+			}
+			try {
+				socket.close();
+			} catch (IOException e1) {
+
+				e1.printStackTrace();
 			}
 		}
 	}

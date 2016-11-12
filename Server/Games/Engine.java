@@ -20,12 +20,15 @@ public abstract class Engine implements Runnable{
 	public Player playerOne;
 	public Player playerTwo;
 	
+	public boolean end;
+	
 	public Engine(char type, Player one, Player two)
 	{
 		this.type = type;
 		this.objects = new ArrayList<Obj>();
 		this.playerOne = one;
 		this.playerTwo = two;
+		this.end = false;
 	}
 	
 	public Engine(char type, Snake one, Snake two)

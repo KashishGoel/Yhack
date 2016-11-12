@@ -70,6 +70,10 @@ public class Tron extends Engine{
 	public void run() {
 		// TODO Auto-generated method stub
 		while (true) {
+			if (end)
+			{
+				break;
+			}
 			update();
 			try {
 				Thread.sleep(50);

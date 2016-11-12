@@ -27,6 +27,10 @@ public class Piano extends Engine {
 	@Override
 	public void run() {
 		while (true) {
+			if (end)
+			{
+				break;
+			}
 			update();
 			try {
 				Thread.sleep(50);
