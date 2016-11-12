@@ -51,6 +51,9 @@ public class Lobby {
 				break;
 			case Engine.GRAVITY:
 				break;
+			case Engine.PIANO:
+				
+				break;
 			}
 		}
 	}

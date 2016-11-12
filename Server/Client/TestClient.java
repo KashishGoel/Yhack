@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class Client implements Runnable {
+public class TestClient implements Runnable {
 
 	public static final String IP = "127.0.0.1";
 
@@ -17,7 +17,7 @@ public class Client implements Runnable {
 
 		System.out.print("Enter your name: ");
 		String name = scan.nextLine();
-		new Client(name, IP,4200);
+		new TestClient(name, IP,4200);
 
 		scan.close();
 	}
@@ -27,7 +27,7 @@ public class Client implements Runnable {
 	PrintWriter output;
 	String name;
 
-	public Client(String name, String IP, int port) {
+	public TestClient(String name, String IP, int port) {
 		try {
 
 			socket = new Socket(IP, port);
@@ -57,7 +57,7 @@ public class Client implements Runnable {
 			try {
 				String message = input.readLine();
 
-				System.out.println(message);
+				//System.out.println(message);
 
 			} catch (IOException e) {
 

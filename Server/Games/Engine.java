@@ -11,6 +11,8 @@ public abstract class Engine implements Runnable{
 	public final static char PONG = 'p';
 	public final static char TRON = 't';
 	public final static char GRAVITY = 'g';
+	public final static char PIANO = 'P';
+	
 	public char type;
 	
 	public ArrayList<Obj> objects;
