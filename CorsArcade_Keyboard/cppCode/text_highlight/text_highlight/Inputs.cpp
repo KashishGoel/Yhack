@@ -19,40 +19,40 @@ void inputsThread(SOCKET Connection) {
 
 	while (true) {
 
-		if (GetAsyncKeyState(VK_UP) && !upp) {
-			upp = true;
+		if (GetAsyncKeyState(VK_UP) && !up) {
+			up = true;
 			sendString("U\n", Connection);
 		}
-		if (!GetAsyncKeyState(VK_UP) && upp) {
-			upp = false;
+		if (!GetAsyncKeyState(VK_UP) && up) {
+			up = false;
 			sendString("!U\n", Connection);
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) && !downn) {
-			downn = true;
-			sendString("U\n", Connection);
+		if (GetAsyncKeyState(VK_DOWN) && !down) {
+			down = true;
+			sendString("D\n", Connection);
 		}
-		if (!GetAsyncKeyState(VK_DOWN) && downn) {
-			downn = false;
-			sendString("!U\n", Connection);
+		if (!GetAsyncKeyState(VK_DOWN) && down) {
+			down = false;
+			sendString("!D\n", Connection);
 		}
 
 		if (GetAsyncKeyState(VK_LEFT) && !left) {
 			left = true;
-			sendString("U\n", Connection);
+			sendString("L\n", Connection);
 		}
 		if (!GetAsyncKeyState(VK_LEFT) && left) {
 			left = false;
-			sendString("!U\n", Connection);
+			sendString("!L\n", Connection);
 		}
 
 		if (GetAsyncKeyState(VK_RIGHT) && !right) {
 			right = true;
-			sendString("U\n", Connection);
+			sendString("R\n", Connection);
 		}
 		if (!GetAsyncKeyState(VK_RIGHT) && right) {
 			right = false;
-			sendString("!U\n", Connection);
+			sendString("!R\n", Connection);
 		}
 		cout << "thread2" << endl;
 		//sendString("hello\n", Connection);
