@@ -38,18 +38,7 @@ public abstract class Obj {
 	{
 //		this.x+=hSpeed;
 //		this.y+=vSpeed;
-		for(int i = 0; i < 3; i++){
-			x1Coordinates[i] = x1Coordinates[i+1];
-			y1Coordinates[i] = y1Coordinates[i+1];
-			x2Coordinates[i] = x2Coordinates[i+1];
-			y2Coordinates[i] = y2Coordinates[i+1];
 
-		}
-		
-		x1Coordinates[3] = x1Coordinates[3] + 1;
-		y1Coordinates[3] = y1Coordinates[3];
-		x2Coordinates[3] = x2Coordinates[3];
-		y2Coordinates[3] = y2Coordinates[3] + 1;
 		
 	}
 	

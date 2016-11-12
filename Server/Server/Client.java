@@ -132,16 +132,26 @@ public class Client {
 					} else if (lobby.gameType == Engine.TRON) {
 						switch (message) {
 						case "U":
+							if (player.vSpeed <=0)
+							{
 							player.vSpeed = -0.1;
+							player.hSpeed = 0;
+							}
 							break;
 						case "D":
+							if(player.hSpeed>=0){
 							player.vSpeed = 0.1;
+							player.hSpeed = 0;}
 							break;
 						case "L":
+							if(player.hSpeed<=0){
 							player.hSpeed = -0.1;
+							player.vSpeed = 0;}
 							break;
 						case "R":
+							if(player.hSpeed>=0){
 							player.hSpeed = 0.1;
+							player.vSpeed =0;}
 							break;
 						}
 					} else if (lobby.gameType == Engine.PIANO)

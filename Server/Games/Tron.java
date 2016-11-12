@@ -58,6 +58,18 @@ public class Tron extends Engine{
 			
 			object.update();
 		}
+		for(int i = 0; i < 3; i++){
+			Obj.x1Coordinates[i] = Obj.x1Coordinates[i+1];
+			Obj.y1Coordinates[i] = Obj.y1Coordinates[i+1];
+			Obj.x2Coordinates[i] = Obj.x2Coordinates[i+1];
+			Obj.y2Coordinates[i] = Obj.y2Coordinates[i+1];
+
+		}
+		
+		Obj.x1Coordinates[3] = Obj.x1Coordinates[3] ;
+		Obj.y1Coordinates[3] = Obj.y1Coordinates[3];
+		Obj.x2Coordinates[3] = Obj.x2Coordinates[3];
+		Obj.y2Coordinates[3] = Obj.y2Coordinates[3] + 1;
 		snake1.client.updateClient(this);
 		snake2.client.updateClient(this);
 	}
