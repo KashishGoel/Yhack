@@ -2,6 +2,7 @@ package Games;
 
 import java.util.ArrayList;
 
+import Objects.Obj;
 import Objects.Player;
 
 public abstract class Engine implements Runnable{
@@ -11,7 +12,7 @@ public abstract class Engine implements Runnable{
 	public final static char GRAVITY = 'g';
 	public char type;
 	
-	public ArrayList<Object> objects;
+	public ArrayList<Obj> objects;
 	
 	public Player playerOne;
 	public Player playerTwo;
@@ -19,12 +20,11 @@ public abstract class Engine implements Runnable{
 	public Engine(char type, Player one, Player two)
 	{
 		this.type = type;
-		this.objects = new ArrayList<Object>();
+		this.objects = new ArrayList<Obj>();
 	}
 
 	public void update()
 	{
-		
 	}
 	
 }

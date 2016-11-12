@@ -31,8 +31,9 @@ public class Lobby {
 			switch(gameType)
 			{
 			case Engine.PONG:
-				
-				//engine = new Pong(clients.get(0), clients.get(1));
+				clients.get(0).createPlayer(0);
+				clients.get(0).createPlayer(1);
+				engine = new Pong(clients.get(0).player, clients.get(1).player);
 				break;
 			case Engine.TRON:
 				break;

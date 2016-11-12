@@ -1,10 +1,13 @@
 package Objects;
 
-public class Player extends Object {
+import Server.Client;
 
-	public Player(int x, int y, int width, int height, char type) {
+public class Player extends Obj {
+
+	public Client client;
+	public Player(int x, int y, int width, int height, char type, Client client) {
 		super(x, y, width, height, type, 0, 0);
-		
+		this.client = client;
 	}
 	
 	@Override
