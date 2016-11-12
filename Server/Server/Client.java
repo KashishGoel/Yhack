@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import Games.Engine;
 import Games.Pong;
-import Games.Tron;
 import Objects.Obj;
 import Objects.Player;
 import Objects.Snake;
@@ -49,10 +48,12 @@ public class Client {
 			Pong pong = (Pong) engine;
 			writer.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y, pong.playerOne.y, pong.playerTwo.y);
 			writer.flush();
-			// System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x,
-			// pong.ball.y,
-			// pong.playerOne.y, pong.playerTwo.y);
-		} else if (engine.type == Engine.TRON) {
+
+//			System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y,
+//					pong.playerOne.y, pong.playerTwo.y);
+		}
+		else if (engine.type == Engine.TRON) {
+
 			System.out.printf("Tron\n");
 
 			for (int i = 3; i >= 0; i--) {
@@ -68,9 +69,14 @@ public class Client {
 			writer.print("\n");
 
 			writer.flush();
+
+			//System.out.printf("%.2f %.2f %.2f %.2f\n", tron.snake1.x, tron.snake1.y,
+			//		tron.playerOne.y, tron.playerTwo.y);
+
 			// System.out.printf("%.2f %.2f %.2f %.2f\n", tron.snake1.x,
 			// tron.snake1.y,
 			// tron.playerOne.y, tron.playerTwo.y);
+
 		}
 
 	}
@@ -112,16 +118,26 @@ public class Client {
 					} else if (lobby.gameType == Engine.TRON) {
 						switch (message) {
 						case "U":
+							if (player.vSpeed <=0)
+							{
 							player.vSpeed = -0.1;
+							player.hSpeed = 0;
+							}
 							break;
 						case "D":
+							if(player.hSpeed>=0){
 							player.vSpeed = 0.1;
+							player.hSpeed = 0;}
 							break;
 						case "L":
+							if(player.hSpeed<=0){
 							player.hSpeed = -0.1;
+							player.vSpeed = 0;}
 							break;
 						case "R":
+							if(player.hSpeed>=0){
 							player.hSpeed = 0.1;
+							player.vSpeed =0;}
 							break;
 						}
 					} else if (lobby.gameType == Engine.PIANO)

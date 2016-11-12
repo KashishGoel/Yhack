@@ -57,7 +57,7 @@ public class TestClient implements Runnable {
 			try {
 				String message = input.readLine();
 
-				//System.out.println(message);
+				System.out.println(message);
 
 			} catch (IOException e) {
 

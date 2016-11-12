@@ -38,14 +38,8 @@ public abstract class Obj {
 	{
 //		this.x+=hSpeed;
 //		this.y+=vSpeed;
-		for(int i = 0; i < 10; i++){
-//			xCoordinates[i] += hSpeed;
-//			yCoordinates[i] += vSpeed;
-		}
-		for(int i = 0; i < 10; i++){
-			
-			//System.out.printf(format, args)
-		}
+
+		
 	}
 	
 	/**
