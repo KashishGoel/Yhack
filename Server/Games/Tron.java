@@ -21,7 +21,38 @@ public class Tron extends Engine{
 	}
 	
 	@Override
-	public void update() {}
+	public void update() {
+		super.update();
+		for(Obj object:objects){
+			try{
+				switch(object.type){
+				
+				}
+			}catch(NullPointerException e)
+			{
+				e.printStackTrace();
+				if (playerOne == null)
+				{
+					System.out.println("1");
+				}
+				if (playerTwo == null)
+				{
+					System.out.println("2");
+				}
+				if (snake1 == null)
+				{
+					System.out.println("3");
+				}
+				if(snake2 == null){
+					System.out.println("4");
+				}
+			}
+			
+			object.update();
+		}
+		playerOne.client.updateClient(this);
+		playerTwo.client.updateClient(this);
+	}
 	public void broadcast(String message)
 	{
 		playerOne.client.sendMessage(message);
