@@ -6,6 +6,7 @@ public abstract class Obj {
 	public static final char PLAYER_TWO = 'p';
 	
 	public static final char BALL = 'B';
+	public static final char SNAKE = 'S';
 	
 	public double x;
 	public double y;
