@@ -58,6 +58,7 @@ public class Server implements Runnable {
 				if (thisLobby == null)
 				{
 						thisLobby = new Lobby(gameType);
+						lobbies.add(thisLobby);
 				}
 				
 				Client player = new Client(socket, reader, writer, thisLobby);

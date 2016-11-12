@@ -21,6 +21,8 @@ public abstract class Engine implements Runnable{
 	{
 		this.type = type;
 		this.objects = new ArrayList<Obj>();
+		this.playerOne = one;
+		this.playerTwo = two;
 	}
 
 	public void update()
