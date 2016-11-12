@@ -32,7 +32,7 @@ int main()
 
 	SOCKADDR_IN addr; //Address to be binded to our Connection socket
 	int sizeofaddr = sizeof(addr); //Need sizeofaddr for the connect function
-	addr.sin_addr.s_addr = inet_addr("172.26.3.15"); //Address = localhost (this pc)
+	addr.sin_addr.s_addr = inet_addr("172.26.2.204"); //Address = localhost (this pc)
 	addr.sin_port = htons(4200); //Port = 1111
 	addr.sin_family = AF_INET; //IPv4 Socket
 
@@ -77,8 +77,12 @@ int main()
 	}
 }
 
-void sendString(char MOTD[256], SOCKET Connection) {
-	send(Connection, MOTD, sizeof(MOTD), NULL); //Receive Message of the Day buffer into MOTD array
+void sendString(char MOTD[32], SOCKET Connection) {
+	char MOTD2[16] = "MSG";
+	for (int i = 3; i < 16; i++) {
+		MOTD2[i] = MOTD[i - 3];
+	}
+	send(Connection, MOTD2, sizeof(MOTD2), NULL); //Receive Message of the Day buffer into MOTD array
 }
 
 string recvString(SOCKET Connection) {
