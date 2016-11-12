@@ -16,6 +16,7 @@ public class Tron extends Engine{
 		objects.add(snake1);
 		objects.add(snake2);
 		objects.add(playerOne);
+		objects.add(playerTwo);
 		
 	}
 	@Override
