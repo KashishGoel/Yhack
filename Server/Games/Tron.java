@@ -19,10 +19,25 @@ public class Tron extends Engine{
 		objects.add(playerTwo);
 		
 	}
+	
+	@Override
+	public void update() {}
+	public void broadcast(String message)
+	{
+		playerOne.client.sendMessage(message);
+		playerTwo.client.sendMessage(message);
+	}
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
+		while (true) {
+			update();
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	
