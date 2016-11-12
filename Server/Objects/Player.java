@@ -9,12 +9,4 @@ public class Player extends Obj {
 		super(x, y, width, height, type, 0, 0);
 		this.client = client;
 	}
-	
-	@Override
-	public void update()
-	{
-		super.update();
-		
-	}
-
 }

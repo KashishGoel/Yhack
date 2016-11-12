@@ -45,9 +45,11 @@ public class Client {
 	public void updateClient(Engine engine) {
 		if (engine.type == Engine.PONG) {
 			Pong pong = (Pong) engine;
-			writer.printf("%.2f %.2f %.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y, pong.playerOne.x,
-					pong.playerOne.y, pong.playerTwo.x, pong.playerTwo.y);
+			writer.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y,
+					pong.playerOne.y, pong.playerTwo.y);
 			writer.flush();
+			System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y,
+					pong.playerOne.y, pong.playerTwo.y);
 		}
 	}
 
@@ -55,10 +57,11 @@ public class Client {
 		@Override
 		public void run() {
 			while (true) {
-				for (String string : toSend) {
-					writer.println(string);
-				}
-				writer.flush();
+//				for (String string : toSend) {
+//					writer.println(string);
+//				}
+//				writer.flush();
+//				toSend.clear();
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
@@ -103,9 +106,9 @@ public class Client {
 	public void createPlayer(int playerNo) {
 		this.playerNo = playerNo;
 		if (playerNo == 0) {
-			this.player = new Player(0, 0, 2, 2, Obj.PLAYER_ONE, this);
+			this.player = new Player(0, 0, 1, 2, Obj.PLAYER_ONE, this);
 		} else {
-			this.player = new Player(15, 0, 2, 2, Obj.PLAYER_ONE, this);
+			this.player = new Player(15, 0, 1, 2, Obj.PLAYER_TWO, this);
 		}
 	}
 }
