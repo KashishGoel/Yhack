@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Objects.Obj;
 import Objects.Player;
+import Objects.Snake;
 
 public abstract class Engine implements Runnable{
 
@@ -18,6 +19,14 @@ public abstract class Engine implements Runnable{
 	public Player playerTwo;
 	
 	public Engine(char type, Player one, Player two)
+	{
+		this.type = type;
+		this.objects = new ArrayList<Obj>();
+		this.playerOne = one;
+		this.playerTwo = two;
+	}
+	
+	public Engine(char type, Snake one, Snake two)
 	{
 		this.type = type;
 		this.objects = new ArrayList<Obj>();

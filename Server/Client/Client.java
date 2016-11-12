@@ -32,7 +32,7 @@ public class Client implements Runnable {
 
 			socket = new Socket(IP, port);
 
-			System.out.println("Connected to server");
+			System.out.println("Connected to server..");
 
 			this.name = name;
 			input = new BufferedReader(new InputStreamReader(socket.getInputStream()));

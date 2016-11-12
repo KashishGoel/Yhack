@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 import Games.Engine;
 import Games.Pong;
+import Games.Tron;
 import Objects.Obj;
 import Objects.Player;
+import Objects.Snake;
 
 public class Client {
 
@@ -51,6 +53,29 @@ public class Client {
 			System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y,
 					pong.playerOne.y, pong.playerTwo.y);
 		}
+		else if (engine.type == Engine.TRON) {
+			System.out.printf("Tron\n");
+
+			for (int i = 3; i >= 0; i--)
+			{
+				writer.printf("%.2f %.2f ", Obj.x1Coordinates[i], Obj.y1Coordinates[i]);
+			}
+			for (int i = 3; i >= 0; i--)
+			{
+				writer.printf("%.2f %.2f", Obj.x2Coordinates[i], Obj.y2Coordinates[i]);
+				if (i > 0)
+				{
+					writer.print(" ");
+				}
+			}
+			
+			writer.print("\n");
+
+			writer.flush();
+			//System.out.printf("%.2f %.2f %.2f %.2f\n", tron.snake1.x, tron.snake1.y,
+			//		tron.playerOne.y, tron.playerTwo.y);
+		}
+		
 	}
 
 	public class Writer implements Runnable {
@@ -109,6 +134,15 @@ public class Client {
 			this.player = new Player(0, 0, 1, 2, Obj.PLAYER_ONE, this);
 		} else {
 			this.player = new Player(15, 0, 1, 2, Obj.PLAYER_TWO, this);
+		}
+	}
+	
+	public void createSnake(int playerNo) {
+		this.playerNo = playerNo;
+		if (playerNo == 0) {
+			this.player = new Snake(0, 0, 1, 2, Obj.SNAKE_ONE,0.1,0, this);
+		} else {
+			this.player = new Snake(15, 0, 1, 2, Obj.SNAKE_TWO,-0.1,1, this);
 		}
 	}
 }

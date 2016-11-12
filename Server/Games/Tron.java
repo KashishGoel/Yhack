@@ -2,21 +2,18 @@ package Games;
 
 import Objects.Snake;
 import Objects.Obj;
-import Objects.Player;
 
 public class Tron extends Engine{
 	public Snake snake1; 
 	public Snake snake2; 
 	
-	public Tron(Player playerOne, Player playerTwo){
-		super(Engine.TRON, playerOne, playerTwo);
+	public Tron(Snake snake1, Snake snake2){
+		super(Engine.TRON, snake1, snake2);
 		
-		snake1 = new Snake(10,3,10,3,0.1,0.1);
-		snake2 = new Snake(10,3,10,3,0.1,0.1);
+		this.snake1 = snake1;
+		this.snake2 = snake2;
 		objects.add(snake1);
 		objects.add(snake2);
-		objects.add(playerOne);
-		objects.add(playerTwo);
 		
 	}
 	
@@ -26,16 +23,27 @@ public class Tron extends Engine{
 		for(Obj object:objects){
 			try{
 				switch(object.type){
-				
+				case Obj.SNAKE_ONE:
+//					if (object.vSpeed > 0) {
+//						if (object.y + object.vSpeed >= 5) {
+//							object.y = 5;
+//							object.vSpeed *= -1;
+//						}
+//					} else if (object.vSpeed < 0) {
+//						if (object.y + object.vSpeed <= 0) {
+//							object.y = 0;
+//							object.vSpeed *= -1;
+//						}
+//					}
 				}
 			}catch(NullPointerException e)
 			{
 				e.printStackTrace();
-				if (playerOne == null)
+				if (snake1 == null)
 				{
 					System.out.println("1");
 				}
-				if (playerTwo == null)
+				if (snake2 == null)
 				{
 					System.out.println("2");
 				}
@@ -50,13 +58,13 @@ public class Tron extends Engine{
 			
 			object.update();
 		}
-		playerOne.client.updateClient(this);
-		playerTwo.client.updateClient(this);
+		snake1.client.updateClient(this);
+		snake2.client.updateClient(this);
 	}
 	public void broadcast(String message)
 	{
-		playerOne.client.sendMessage(message);
-		playerTwo.client.sendMessage(message);
+		snake1.client.sendMessage(message);
+		snake2.client.sendMessage(message);
 	}
 	@Override
 	public void run() {

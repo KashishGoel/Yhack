@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import Games.Engine;
 import Games.Pong;
+import Games.Tron;
 import Objects.Player;
+import Objects.Snake;
 
 public class Lobby {
 
@@ -40,6 +42,12 @@ public class Lobby {
 				System.out.println("Pong game started");
 				break;
 			case Engine.TRON:
+				clients.get(0).createSnake(0);
+				clients.get(1).createSnake(1);
+				engine = new Tron((Snake)clients.get(0).player, (Snake)clients.get(1).player);
+				Thread thread1 = new Thread(engine);
+				thread1.start();
+				System.out.println("Tron game started");
 				break;
 			case Engine.GRAVITY:
 				break;

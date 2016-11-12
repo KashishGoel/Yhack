@@ -1,9 +1,11 @@
 package Objects;
 
-public class Snake extends Obj {
+import Server.Client;
 
-	public Snake(int x, int y, int width, int height, double hSpeed, double vSpeed){
-		super(x, y, width, height, Obj.SNAKE, hSpeed, vSpeed); 
-		
+public class Snake extends Player {
+	public Snake(int x, int y, int width, int height,char type, double hSpeed, double vSpeed,Client client){
+		super(x, y, width, height, type, client); 
+		this.hSpeed = hSpeed;
+		this.vSpeed = vSpeed;
 	}
 }
