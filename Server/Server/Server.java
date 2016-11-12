@@ -42,7 +42,7 @@ public class Server implements Runnable {
 				PrintWriter writer = new PrintWriter(socket.getOutputStream());
 				
 				// Wait for client input for which game
-				char gameType = Engine.TRON;//reader.readLine().charAt(0);
+				char gameType = Engine.PONG;//reader.readLine().charAt(0);
 				
 				Lobby thisLobby = null;
 				

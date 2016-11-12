@@ -47,31 +47,35 @@ public class Client {
 	public void updateClient(Engine engine) {
 		if (engine.type == Engine.PONG) {
 			Pong pong = (Pong) engine;
-			writer.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y,
-					pong.playerOne.y, pong.playerTwo.y);
+			writer.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y, pong.playerOne.y, pong.playerTwo.y);
 			writer.flush();
+<<<<<<< HEAD
 //			System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x, pong.ball.y,
 //					pong.playerOne.y, pong.playerTwo.y);
 		}
 		else if (engine.type == Engine.TRON) {
+=======
+			// System.out.printf("%.2f %.2f %.2f %.2f\n", pong.ball.x,
+			// pong.ball.y,
+			// pong.playerOne.y, pong.playerTwo.y);
+		} else if (engine.type == Engine.TRON) {
+>>>>>>> e6112b0a771d4bc9827e950130f6a463e8db1318
 			System.out.printf("Tron\n");
 
-			for (int i = 3; i >= 0; i--)
-			{
+			for (int i = 3; i >= 0; i--) {
 				writer.printf("%.2f %.2f ", Obj.x1Coordinates[i], Obj.y1Coordinates[i]);
 			}
-			for (int i = 3; i >= 0; i--)
-			{
+			for (int i = 3; i >= 0; i--) {
 				writer.printf("%.2f %.2f", Obj.x2Coordinates[i], Obj.y2Coordinates[i]);
-				if (i > 0)
-				{
+				if (i > 0) {
 					writer.print(" ");
 				}
 			}
-			
+
 			writer.print("\n");
 
 			writer.flush();
+<<<<<<< HEAD
 			for(int i = 0; i < 4; i++){
 			
 //				System.out.print(Obj.x1Coordinates[i]);
@@ -81,19 +85,24 @@ public class Client {
 			}
 			//System.out.printf("%.2f %.2f %.2f %.2f\n", tron.snake1.x, tron.snake1.y,
 			//		tron.playerOne.y, tron.playerTwo.y);
+=======
+			// System.out.printf("%.2f %.2f %.2f %.2f\n", tron.snake1.x,
+			// tron.snake1.y,
+			// tron.playerOne.y, tron.playerTwo.y);
+>>>>>>> e6112b0a771d4bc9827e950130f6a463e8db1318
 		}
-		
+
 	}
 
 	public class Writer implements Runnable {
 		@Override
 		public void run() {
 			while (true) {
-//				for (String string : toSend) {
-//					writer.println(string);
-//				}
-//				writer.flush();
-//				toSend.clear();
+				// for (String string : toSend) {
+				// writer.println(string);
+				// }
+				// writer.flush();
+				// toSend.clear();
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
@@ -111,6 +120,48 @@ public class Client {
 			while (true) {
 				try {
 					String message = reader.readLine();
+					for (int i = 0; i < message.length(); i++) {
+						if (message.charAt(i) >= 33) {
+							message = message.substring(i);
+							break;
+						}
+					}
+
+					if (lobby.gameType == Engine.PONG) {
+						switch (message) {
+						case "U":
+							player.vSpeed = -0.3;
+							break;
+						case "!U":
+							player.vSpeed = 0;
+							break;
+						case "D":
+							player.vSpeed = 0.3;
+							break;
+						case "!D":
+							player.vSpeed = 0;
+							break;
+						}
+					} else if (lobby.gameType == Engine.TRON) {
+						switch (message) {
+						case "U":
+							player.vSpeed = -0.1;
+							break;
+						case "D":
+							player.vSpeed = 0.1;
+							break;
+						case "L":
+							player.hSpeed = -0.1;
+							break;
+						case "R":
+							player.hSpeed = 0.1;
+							break;
+						}
+					} else if (lobby.gameType == Engine.PIANO)
+					{
+						broadcast(message);
+					}
+					
 					System.out.println("Player: " + message);
 
 				} catch (IOException e) {
@@ -123,6 +174,12 @@ public class Client {
 	public void sendMessage(String message) {
 		writer.println(message);
 		writer.flush();
+	}
+	
+	public void broadcast(String message)
+	{
+		lobby.engine.playerOne.client.sendMessage(message);
+		lobby.engine.playerTwo.client.sendMessage(message);
 	}
 
 	public void queueMessage(String message) {
@@ -143,13 +200,13 @@ public class Client {
 			this.player = new Player(15, 0, 1, 2, Obj.PLAYER_TWO, this);
 		}
 	}
-	
+
 	public void createSnake(int playerNo) {
 		this.playerNo = playerNo;
 		if (playerNo == 0) {
-			this.player = new Snake(0, 0, 1, 2, Obj.SNAKE_ONE,0.1,0, this);
+			this.player = new Snake(0, 0, 1, 2, Obj.SNAKE_ONE, 0.1, 0, this);
 		} else {
-			this.player = new Snake(15, 0, 1, 2, Obj.SNAKE_TWO,-0.1,1, this);
+			this.player = new Snake(15, 0, 1, 2, Obj.SNAKE_TWO, -0.1, 1, this);
 		}
 	}
 }
