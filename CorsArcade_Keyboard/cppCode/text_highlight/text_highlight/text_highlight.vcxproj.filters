@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\..\George%27s Folder\EXEs\CosairSDK\CUESDK_2.4.67\CUESDK\examples\text_highlight\text_highlight\KeyboardFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DrawPong.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\..\..\George%27s Folder\EXEs\CosairSDK\CUESDK_2.4.67\CUESDK\examples\text_highlight\text_highlight\Inputs.cpp">
+    <ClCompile Include="Inputs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
