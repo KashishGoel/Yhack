@@ -9,7 +9,7 @@ public class Pong extends Engine {
 	public int pOnePoints = 0;
 	public int pTwoPoints = 0;
 	public Ball ball;
-	public static double speed = 0.35;
+	public static double speed = 0.2;
 	
 	public Pong(Player playerOne, Player playerTwo) {
 		super(Engine.PONG, playerOne, playerTwo);

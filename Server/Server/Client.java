@@ -102,12 +102,20 @@ public class Client {
 						switch (message) {
 						case "UpPressed":
 							player.vSpeed = -0.4;
+							if (player.y>= 0)
+							{
+								player.y -= 1.3;
+							}
 							break;
 						case "UpReleased":
 							player.vSpeed = 0;
 							break;
 						case "DownPressed":
 							player.vSpeed = 0.4;
+							if (player.y <= 7)
+							{
+								player.y+=1.3;
+							}
 							break;
 						case "DownReleased":
 							player.vSpeed = 0;
