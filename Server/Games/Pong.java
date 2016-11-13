@@ -9,8 +9,7 @@ public class Pong extends Engine {
 	public int pOnePoints = 0;
 	public int pTwoPoints = 0;
 	public Ball ball;
-	public final static double ORIGINAL_SPEED = 0.2;
-	public double speed;
+	public static double speed = 0.25;
 	
 	public Pong(Player playerOne, Player playerTwo) {
 		super(Engine.PONG, playerOne, playerTwo);
@@ -19,7 +18,6 @@ public class Pong extends Engine {
 		objects.add(playerOne);
 		objects.add(playerTwo);
 		System.out.println("Create PONG");
-		speed = ORIGINAL_SPEED;
 	}
 
 	@Override
@@ -83,7 +81,6 @@ public class Pong extends Engine {
 								playerOne.client.sendMessage("PONG");
 								playerTwo.client.sendMessage("PONG");
 							}
-							speed += 0.1;
 						}
 						else if (object.x+object.hSpeed>=16)
 						{
@@ -98,8 +95,6 @@ public class Pong extends Engine {
 							
 							playerTwo.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
 							playerTwo.client.writer.flush();
-							
-							speed = ORIGINAL_SPEED;
 							try {
 								for (int no = 0; no < 100; no++)
 								{
@@ -153,19 +148,15 @@ public class Pong extends Engine {
 								playerOne.client.sendMessage("PONG");
 								playerTwo.client.sendMessage("PONG");
 							}
-							speed += 0.1;
 						}
 						else if (object.x+object.hSpeed<=-1)
 						{
 							pTwoPoints ++;
 							broadcast("P");
 							object.x = 1;
-							object.y = 3;
+							object.y=3;
 							object.hSpeed = speed;
 							object.vSpeed = -speed;
-							
-							speed = ORIGINAL_SPEED;
-							
 							playerOne.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
 							playerOne.client.writer.flush();
 							
