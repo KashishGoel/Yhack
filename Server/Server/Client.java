@@ -160,7 +160,14 @@ public class Client {
 						}
 					} else if (lobby.gameType == Engine.PIANO)
 					{
-						broadcast(message);
+						if (player.type==Obj.PLAYER_ONE)
+						{
+						lobby.engine.playerTwo.client.sendMessage(message);
+						}
+						else
+						{
+							lobby.engine.playerOne.client.sendMessage(message);
+						}
 					}
 					
 					
