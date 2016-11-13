@@ -1,6 +1,7 @@
 using namespace std;
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define PONG 0
+#define TRON 1
 #define PIANO 2
 
 #pragma comment(lib,"ws2_32.lib")
@@ -62,6 +63,56 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 			//	//sendString("hello\n", Connection);
 			//	this_thread::sleep_for(chrono::milliseconds(15));
 		}
+	}
+	else if (gameType == TRON) {
+		bool up = false;
+		bool down = false;
+		bool left = false;
+		bool right = false;
+
+		//sendString("Hello\n", Connection);
+		while (true) {
+
+			if (GetAsyncKeyState(VK_UP) && !up) {
+				up = true;
+				sendString("Up\n", Connection);
+			}
+			else if (!GetAsyncKeyState(VK_UP) && up) {
+				up = false;
+				sendString("UpReleased\n", Connection);
+			}
+
+			else if (GetAsyncKeyState(VK_DOWN) && !down) {
+				down = true;
+				sendString("Down\n", Connection);
+			}
+			else if (!GetAsyncKeyState(VK_DOWN) && down) {
+				down = false;
+				sendString("DownReleased\n", Connection);
+			}
+
+			else if (GetAsyncKeyState(VK_LEFT) && !left) {
+				left = true;
+				sendString("Left\n", Connection);
+			}
+			else if (!GetAsyncKeyState(VK_LEFT) && left) {
+				left = false;
+				sendString("LeftReleased\n", Connection);
+			}
+
+			else if (GetAsyncKeyState(VK_RIGHT) && !right) {
+				right = true;
+				sendString("Right\n", Connection);
+			}
+			else if (!GetAsyncKeyState(VK_RIGHT) && right) {
+				right = false;
+				sendString("RightReleased\n", Connection);
+			}
+
+
+
+		}
+		
 	} else if (gameType == PIANO) {
 		drawPiano(0, false, player);
 		bool chars[26]{};
