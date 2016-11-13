@@ -141,7 +141,7 @@ public class Pong extends Engine {
 			}
 			update();
 			try {
-				Thread.sleep(50);
+				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
