@@ -92,7 +92,7 @@ public class Server implements Runnable {
 	
 	public static void removeLobby(Lobby lobby)
 	{
-		toRemove.add(lobby);
+		
 		try
 		{
 		lobby.engine.playerOne.client.disconnect=true;
@@ -109,7 +109,16 @@ public class Server implements Runnable {
 		{
 			
 		}
-		lobby.engine.end =true;
+		try
+		{
+			lobby.engine.end =true;
+		}
+		catch(NullPointerException e)
+		{
+			
+		}
+		
+		toRemove.add(lobby);
 	}
 
 }
