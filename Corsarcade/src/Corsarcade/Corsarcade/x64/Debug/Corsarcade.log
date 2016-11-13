@@ -1,0 +1,5 @@
+﻿  Client.cpp
+c:\users\george\desktop\george's folder\github\yhack\corsarcade\src\corsarcade\corsarcade\client.cpp(81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Client.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+  Corsarcade.vcxproj -> C:\Users\George\Desktop\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.exe
+  Corsarcade.vcxproj -> C:\Users\George\Desktop\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.pdb (Full PDB)
