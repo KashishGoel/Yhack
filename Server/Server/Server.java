@@ -43,7 +43,7 @@ public class Server implements Runnable {
 				
 				
 				// Wait for client input for which game
-				char gameType = Engine.PIANO;//reader.readLine().charAt(0);
+				char gameType = Engine.TRON;//reader.readLine().charAt(0);
 				
 				Lobby thisLobby = null;
 				

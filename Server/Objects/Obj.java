@@ -16,9 +16,11 @@ public abstract class Obj {
 	public int width;
 	public int height;
 	public char type;
+	public static double[] originalX1 = {0,1,2,3};
+	public static double[] originalX2 = {10,9,8,7};
 	public static double[] x1Coordinates = {0,1,2,3};
 	public static double[] y1Coordinates = {0,0,0,0};
-	public static double[] x2Coordinates = {15,14,13,12};
+	public static double[] x2Coordinates = {10,9,8,7};
 	public static double[] y2Coordinates = {5,5,5,5};
 	public boolean exists;
 	

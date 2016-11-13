@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Games.Engine;
 import Games.Pong;
+import Games.Tron;
 import Objects.Obj;
 import Objects.Player;
 import Objects.Snake;
@@ -23,6 +24,9 @@ public class Client {
 	StringBuilder longMessage;
 	ArrayList<String> toSend;
 	boolean disconnect;
+	private double x;
+	private double y1;
+	private double x1;
 
 	/**
 	 * 
@@ -53,12 +57,21 @@ public class Client {
 //					pong.playerOne.y, pong.playerTwo.y);
 		}
 		else if (engine.type == Engine.TRON) {
-
-			for (int i = 3; i >= 0; i--) {
-				writer.printf("%.2f %.2f ", Obj.x1Coordinates[i], Obj.y1Coordinates[i]);
+			x1 = ((Tron)lobby.engine).snake1.x;
+			y1 = ((Tron)lobby.engine).snake1.y;
+			//System.out.printf("x1 y1:%.2f %.2f\n",x1,y1);
+			writer.printf("%.2f %.2f ", x1,y1);
+			for (int i = 2; i >= 0; i--) {
+			//	System.out.printf("Orig:%.2f", Obj.x1Coordinates[i]);
+				writer.printf("%d %d ", Math.round(1.0*Obj.x1Coordinates[i]-x1), Math.round(1.0*Obj.y1Coordinates[i]-y1));
+			//	System.out.printf("x y: %d %d\n",Math.round(1.0*Obj.x1Coordinates[i]-x1),Math.round(1.0*Obj.y1Coordinates[i]-y1));
 			}
-			for (int i = 3; i >= 0; i--) {
-				writer.printf("%.2f %.2f", Obj.x2Coordinates[i], Obj.y2Coordinates[i]);
+			double x2 = ((Tron)lobby.engine).snake2.x;
+			double y2 = ((Tron)lobby.engine).snake2.y;
+			writer.printf("%.2f %.2f ", x2,y2);
+			System.out.printf("x2 y2:%.2f %.2f\n",x2,y2);
+			for (int i = 2; i >= 0; i--) {
+				writer.printf("%d %d", Math.round(1.0*Obj.x2Coordinates[i]-x2), Math.round(Obj.y2Coordinates[i]-y2));
 				if (i > 0) {
 					writer.print(" ");
 				}
@@ -135,26 +148,44 @@ public class Client {
 						}
 					} else if (lobby.gameType == Engine.TRON) {
 						switch (message) {
+						case "reset":
+							System.out.println("RESET THIS");
+							for(int i=0;i<=3;i++){
+								Obj.x1Coordinates[i] = Obj.originalX1[i];
+								((Tron)lobby.engine).snake1.x = 3;
+								((Tron)lobby.engine).snake1.y = 0;
+								((Tron)lobby.engine).snake2.x = 7;
+								((Tron)lobby.engine).snake2.y = 5;
+								((Tron)lobby.engine).snake1.hSpeed = 1; 
+								((Tron)lobby.engine).snake1.vSpeed = 0;
+								((Tron)lobby.engine).snake2.hSpeed = -1;
+								((Tron)lobby.engine).snake2.vSpeed = 0;
+								Obj.x2Coordinates[i] = Obj.originalX2[i];
+								Obj.y1Coordinates[i] = 0;
+								Obj.y2Coordinates[i] = 5; 
+							}
+
+							
 						case "Up":
 							if (player.vSpeed <=0)
 							{
-							player.vSpeed = -0.1;
+							player.vSpeed = -1;
 							player.hSpeed = 0;
 							}
 							break;
 						case "Down":
 							if(player.vSpeed>=0){
-							player.vSpeed = 0.1;
+							player.vSpeed = 1;
 							player.hSpeed = 0;}
 							break;
 						case "Left":
 							if(player.hSpeed<=0){
-							player.hSpeed = -0.1;
+							player.hSpeed = -1;
 							player.vSpeed = 0;}
 							break;
 						case "Right":
 							if(player.hSpeed>=0){
-							player.hSpeed = 0.1;
+							player.hSpeed = 1;
 							player.vSpeed =0;}
 							break;
 						}
