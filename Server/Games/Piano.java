@@ -1,7 +1,4 @@
 package Games;
-
-import Objects.Ball;
-import Objects.Obj;
 import Objects.Player;
 
 public class Piano extends Engine {

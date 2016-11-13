@@ -41,6 +41,7 @@ public class Server implements Runnable {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				PrintWriter writer = new PrintWriter(socket.getOutputStream());
 				
+				
 				// Wait for client input for which game
 				char gameType = Engine.PONG;//reader.readLine().charAt(0);
 				
@@ -59,7 +60,13 @@ public class Server implements Runnable {
 				{
 						thisLobby = new Lobby(gameType);
 						lobbies.add(thisLobby);
+						writer.println("1");
 				}
+				else
+				{
+					writer.println("2");
+				}
+				writer.flush();
 				
 				Client player = new Client(socket, reader, writer, thisLobby);
 				
@@ -86,8 +93,22 @@ public class Server implements Runnable {
 	public static void removeLobby(Lobby lobby)
 	{
 		toRemove.add(lobby);
+		try
+		{
 		lobby.engine.playerOne.client.disconnect=true;
+		}
+		catch(NullPointerException e)
+		{
+			
+		}
+		try
+		{
 		lobby.engine.playerTwo.client.disconnect=true;
+		}
+		catch(NullPointerException e)
+		{
+			
+		}
 		lobby.engine.end =true;
 	}
 

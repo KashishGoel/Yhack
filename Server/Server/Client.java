@@ -92,6 +92,11 @@ public class Client {
 					}
 					
 					message = message.substring(message.indexOf("MSG")+3);
+					
+					if (message.equals("Exit"))
+					{
+						break;
+					}
 
 					if (lobby.gameType == Engine.PONG) {
 						switch (message) {
@@ -146,8 +151,10 @@ public class Client {
 			}
 			if (!disconnect)
 			{
+				System.out.println("Closing lobby");
 				Server.removeLobby(lobby);
 			}
+			System.out.println("Player has disconnected");
 			disconnect = true;
 			writer.close();
 			try {
