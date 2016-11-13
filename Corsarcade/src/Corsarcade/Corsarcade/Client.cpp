@@ -1,9 +1,3 @@
-/*
-Author: Pindrought
-Date: 11/13/2015
-This is the solution for the client that you should have at the end of tutorial 1.
-*/
-
 using namespace std;
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 
@@ -15,7 +9,7 @@ using namespace std;
 //#include "DrawPong.cpp"
 
 int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight);
-void sendString(char MOTD[256], SOCKET Connection);
+void sendString(char MOTD[32], SOCKET Connection);
 string recvString(SOCKET Connection);
 void inputsThread(SOCKET Connection);
 
@@ -50,7 +44,7 @@ int main()
 	thread inputs(inputsThread, Connection);
 
 	///
-
+	int player = atof(recvString(Connection).c_str());
 	//sendString("hello\n", Connection);
 	while (true) {
 		string pongVars = recvString(Connection);
@@ -65,7 +59,10 @@ int main()
 			i++;
 		}
 		vals[i] = atof(pongVars.c_str());
-
+		for (int i = 0; i < 4; i++) {
+			cout << vals[i] << " ";
+		}
+		cout << endl;
 		drawPong(vals[0], vals[1], vals[2], vals[3]);
 		//cout << "trying to read, yo" << endl;
 		//drawPong(100,50,30,60);

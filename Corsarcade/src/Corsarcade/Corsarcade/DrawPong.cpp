@@ -9,6 +9,7 @@
 #include <future>
 #include <vector>
 #include <windows.h>
+#include <string>
 
 const char* toString(CorsairError error)
 {
@@ -48,11 +49,60 @@ double getKeyboardHeight(CorsairLedPositions *ledPositions)
 	return minmaxLeds.second->top + minmaxLeds.second->height - minmaxLeds.first->top;
 }
 
-double toNewScale(double val, double oldMax, double max) {
-	return 6 + ((val / oldMax)*max);
+int toNewScale(double val, double oldMax, double max) {
+	return (int)((val / oldMax)*max);
 }
-
-int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight)
+static int ScreenMap[10][5] = {
+	{ 15, 26, 38, 51, 63 },
+	{ 16, 27, 39, 52, 65 },
+	{ 17, 28, 40, 53, 65 },
+	{ 18, 29, 41, 54, 65 },
+	{ 19, 30, 42, 55, 65 },
+	{ 20, 31, 43, 56, 65 },
+	{ 21, 32, 44, 57, 65 },
+	{ 22, 33, 45, 58, 65 },
+	{ 23, 34, 46, 59, 65 },
+	{ 24, 35, 47, 60 ,68 }
+};
+static int PaddleLeft[4] = { 13, 25, 37, 49,};
+static int PaddleRight[4] = {  24, 36, 48, 60};
+int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight) {
+	int xB = toNewScale(xBall, 15, 9);
+	int yB = toNewScale(yBall, 5, 4);
+	int yPL = toNewScale(yPaddleLeft, 6, 3);
+	int yPR = toNewScale(yPaddleRight, 6, 3);
+	CorsairPerformProtocolHandshake();
+	if (const auto error = CorsairGetLastError()) {
+		std::cout << "Handshake failed: " << toString(error) << std::endl;
+		getchar();
+		return -1;
+	}
+	const auto ledPositions = CorsairGetLedPositions();
+	if (ledPositions && ledPositions->numberOfLed > 0) {
+		std::vector<CorsairLedColor> vec;
+		for (auto i = 0; i < ledPositions->numberOfLed; i++) {
+			const auto ledPos = ledPositions->pLedPosition[i];
+			auto ledColor = CorsairLedColor();
+			ledColor.ledId = ledPos.ledId;
+			ledColor.b = 10;
+			ledColor.r = 10;
+			ledColor.g = 10;
+			if (ledPos.ledId == ScreenMap[xB][yB]) {
+				ledColor.r = 255;
+			}
+			if (ledPos.ledId == PaddleLeft[yPL]) {
+				ledColor.g = 255;
+			}
+			if (ledPos.ledId == PaddleRight[yPR]) {
+				ledColor.g = 255;
+			}
+			vec.push_back(ledColor);
+		}
+		CorsairSetLedsColors(vec.size(), vec.data());
+		std::this_thread::sleep_for(std::chrono::milliseconds(25));
+	}
+}
+int drawPongmap(double xBall, double yBall, double yPaddleLeft, double yPaddleRight)
 {
 	std::cout << "vals: " << xBall << " " << yBall << " " << yPaddleLeft << " " << yPaddleRight << std::endl;
 	xBall = toNewScale(xBall, 15, 274);
@@ -104,7 +154,16 @@ int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight
 				bestLedRightPaddle = i;
 			}
 		}
-
+		while (true) {
+			auto userInputStr = std::string();
+			std::cin >> userInputStr;
+			int value = atoi(userInputStr.c_str());
+			std::cout << "top: " << ledPositions->pLedPosition[value].top << std::endl;
+			std::cout << "top: " << ledPositions->pLedPosition[value].top << std::endl;
+			std::cout << "left: " << ledPositions->pLedPosition[value].left << std::endl;
+			std::cout << "height: " << ledPositions->pLedPosition[value].height << std::endl;
+			std::cout << "width: " << ledPositions->pLedPosition[value].width << std::endl;
+		}
 		//std::cout << "test3" << std::endl;
 
 		//std::cout << currWidth << " " << currHeight << std::endl;
