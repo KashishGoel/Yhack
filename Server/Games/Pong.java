@@ -28,12 +28,12 @@ public class Pong extends Engine {
 				case Obj.BALL:
 					if (object.vSpeed > 0) {
 						if (object.y + object.vSpeed >= 5) {
-							object.y = 5;
+							object.y = 5 + object.vSpeed;
 							object.vSpeed *= -1;
 						}
 					} else if (object.vSpeed < 0) {
 						if (object.y + object.vSpeed <= 0) {
-							object.y = 0;
+							object.y = 0 + object.vSpeed;
 							object.vSpeed *= -1;
 						}
 					}
