@@ -52,25 +52,27 @@ double getKeyboardHeight(CorsairLedPositions *ledPositions)
 int toNewScale(double val, double oldMax, double max) {
 	return (int)((val / oldMax)*max);
 }
-static int ScreenMap[10][5] = {
-	{ 15, 26, 38, 51, 63 },
-	{ 16, 27, 39, 52, 65 },
-	{ 17, 28, 40, 53, 65 },
-	{ 18, 29, 41, 54, 65 },
-	{ 19, 30, 42, 55, 65 },
-	{ 20, 31, 43, 56, 65 },
-	{ 21, 32, 44, 57, 65 },
-	{ 22, 33, 45, 58, 65 },
-	{ 23, 34, 46, 59, 65 },
-	{ 24, 35, 47, 60 ,68 }
+static int ScreenMap[11][6] = {
+	{3/*F2*/, 15/*2*/, 26/*Q*/, 38/*A*/, 51/*Z*/, 63/*Alt*/ },
+	{4,		  16/*3*/, 27, 39, 52, -1 },
+	{5,		  17/*4*/, 28, 40, 53, -1 },
+	{-1,	  18/*5*/, 29, 41, 54, 65 },
+	{6/*F5*/, 19/*6*/, 30, 42, 55, 65 },
+	{7,		  20/*7*/, 31, 43, 56, 65 },
+	{8,		  21/*8*/, 32, 44, 57, -1 },
+	{9/*F8*/, 22/*9*/, 33, 45, 58, -1 },
+	{-1,      23/*0*/, 34, 46, 59, 68 },
+	{10/*F9*/,24/*minus*/, 35/*P*/, 47/*;*/, 60/*?*/ ,69 /*rightGui*/},
+	{ 11/*F10*/,85/*plus*/, 36/*[*/, 48/*'*/, 60/*?*/ ,69 /*rightGui*/ }
 };
-static int PaddleLeft[4] = { 13, 25, 37, 49,};
-static int PaddleRight[4] = {  24, 36, 48, 60};
-int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight) {
-	int xB = toNewScale(xBall, 15, 9);
-	int yB = toNewScale(yBall, 5, 4);
-	int yPL = toNewScale(yPaddleLeft, 6, 3);
-	int yPR = toNewScale(yPaddleRight, 6, 3);
+static int PaddleLeft[5][6] = { { 1,2,13,14,-1,-1 }, {13,14,25,-1,-1,-1 }, {25,37,-1,-1,-1,-1 }, {37, 49,-1,-1,-1,-1 }, {49, 61,62,-1,-1,-1 }, };
+static int PaddleRight[5][6] = { { -1,12,73,-1,-1,87 }, {-1,87,-1,80,-1,81 }, { 80,-1,81,-1,-1,83 }, {-1,83,-1,-1,-1,91 },{ 91,-1 ,-1,-1,70,92 }};
+
+int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight, int winState) {
+	int xB = toNewScale(xBall, 16, 11);
+	int yB = toNewScale(yBall, 6, 6);
+	int yPL = toNewScale(yPaddleLeft, 6, 5);
+	int yPR = toNewScale(yPaddleRight, 6, 5);
 	CorsairPerformProtocolHandshake();
 	if (const auto error = CorsairGetLastError()) {
 		std::cout << "Handshake failed: " << toString(error) << std::endl;
@@ -84,17 +86,30 @@ int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight
 			const auto ledPos = ledPositions->pLedPosition[i];
 			auto ledColor = CorsairLedColor();
 			ledColor.ledId = ledPos.ledId;
+			ledColor.r = (winState == -1) ? 255 : 10;
+			ledColor.g = (winState == 1)?255:10;
 			ledColor.b = 10;
-			ledColor.r = 10;
-			ledColor.g = 10;
+			/*if (ledPos.ledId == 62) {
+				ledColor.r = 255;
+			}*/
 			if (ledPos.ledId == ScreenMap[xB][yB]) {
 				ledColor.r = 255;
+				ledColor.g = 0;
+				ledColor.b = 0;
 			}
-			if (ledPos.ledId == PaddleLeft[yPL]) {
+			for (int b = 0; b < 6; b++) {
+				if (ledPos.ledId == PaddleLeft[yPL][b]){
+					ledColor.r = 0;
 				ledColor.g = 255;
+				ledColor.b = 255;
 			}
-			if (ledPos.ledId == PaddleRight[yPR]) {
-				ledColor.g = 255;
+			}
+			for (int b = 0; b < 6; b++) {
+				if (ledPos.ledId == PaddleRight[yPR][b]) {
+					ledColor.r = 0;
+					ledColor.g = 255;
+					ledColor.b = 255;
+				}
 			}
 			vec.push_back(ledColor);
 		}

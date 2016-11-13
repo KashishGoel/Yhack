@@ -8,7 +8,7 @@ using namespace std;
 #include <thread>
 //#include "DrawPong.cpp"
 
-int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight);
+int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight, int winState);
 void sendString(char MOTD[32], SOCKET Connection);
 string recvString(SOCKET Connection);
 void inputsThread(SOCKET Connection);
@@ -26,7 +26,7 @@ int main()
 
 	SOCKADDR_IN addr; //Address to be binded to our Connection socket
 	int sizeofaddr = sizeof(addr); //Need sizeofaddr for the connect function
-	addr.sin_addr.s_addr = inet_addr("172.26.2.204"); //Address = localhost (this pc)
+	addr.sin_addr.s_addr = inet_addr("172.26.2.204"); //Address = localhost (this pc)  172.26.2.204
 	addr.sin_port = htons(4200); //Port = 1111
 	addr.sin_family = AF_INET; //IPv4 Socket
 
@@ -44,10 +44,24 @@ int main()
 	thread inputs(inputsThread, Connection);
 
 	///
-	int player = atof(recvString(Connection).c_str());
+	int player = (int)atof(recvString(Connection).c_str());
+	int winState = 0;
 	//sendString("hello\n", Connection);
 	while (true) {
 		string pongVars = recvString(Connection);
+		if (pongVars == "p" || pongVars == "P") {//Upper P is 2 is winner
+			//drawPong(vals[0], vals[1], vals[2], vals[3]);
+			if ((pongVars == "P" && player == 2) || (pongVars == "p" && player == 1)) {
+				winState = 1;
+			} 
+			if ((pongVars == "P" && player == 1) || (pongVars == "p" && player == 2)) {
+				winState = -1;
+			}
+			continue;
+		}
+		if (pongVars == "START") {
+			winState = 0;
+		}
 		//cout << pongVars << endl;
 		double vals[4]{};
 		int i = 0;
@@ -63,7 +77,7 @@ int main()
 			cout << vals[i] << " ";
 		}
 		cout << endl;
-		drawPong(vals[0], vals[1], vals[2], vals[3]);
+		drawPong(vals[0], vals[1], vals[2], vals[3], winState);
 		//cout << "trying to read, yo" << endl;
 		//drawPong(100,50,30,60);
 		//this_thread::sleep_for(chrono::milliseconds(60));
