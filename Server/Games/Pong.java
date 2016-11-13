@@ -14,12 +14,14 @@ public class Pong extends Engine {
 
 	public Pong(Player playerOne, Player playerTwo) {
 		super(Engine.PONG, playerOne, playerTwo);
+		
+		speed = ORIGINAL;
 		ball = new Ball(7, 3, 1, 2, speed, speed);
 		objects.add(ball);
 		objects.add(playerOne);
 		objects.add(playerTwo);
 		System.out.println("Create PONG");
-		speed = ORIGINAL;
+		
 	}
 
 	@Override
@@ -34,7 +36,7 @@ public class Pong extends Engine {
 							object.y = 6 + object.vSpeed;
 							object.vSpeed *= -1;
 
-							for (int no = 0; no < 3; no++) {
+							for (int no = 0; no < 5; no++) {
 								playerOne.client.sendMessage("PING");
 								playerTwo.client.sendMessage("PING");
 							}
@@ -43,7 +45,7 @@ public class Pong extends Engine {
 						if (object.y + object.vSpeed <= 0) {
 							object.y = -1 + object.vSpeed;
 							object.vSpeed *= -1;
-							for (int no = 0; no < 3; no++) {
+							for (int no = 0; no < 5; no++) {
 								playerOne.client.sendMessage("PING");
 								playerTwo.client.sendMessage("PING");
 							}
@@ -75,10 +77,13 @@ public class Pong extends Engine {
 								break;
 							}
 
+							for (int no = 0; no < 5; no++)
+							{
 							playerOne.client.sendMessage("PONG");
 							playerTwo.client.sendMessage("PONG");
+							}
 
-							speed += 0.1;
+							speed += 0;;
 						} else if (object.x + object.hSpeed >= 16) {
 							pOnePoints++;
 							broadcast("p");
@@ -98,7 +103,7 @@ public class Pong extends Engine {
 								for (int no = 0; no < 100; no++) {
 									playerOne.update();
 									playerTwo.update();
-									if (no == 66) {
+									if (no >= 66 && no <= 70) {
 										playerOne.client.sendMessage("START");
 										playerTwo.client.sendMessage("START");
 									}
@@ -137,11 +142,11 @@ public class Pong extends Engine {
 								break;
 							}
 
-							for (int no = 0; no < 3; no++) {
+							for (int no = 0; no < 5; no++) {
 								playerOne.client.sendMessage("PONG");
 								playerTwo.client.sendMessage("PONG");
 							}
-							speed += 0.1;
+							speed += 0;;
 						} else if (object.x + object.hSpeed <= -1) {
 							pTwoPoints++;
 							broadcast("P");
@@ -161,7 +166,7 @@ public class Pong extends Engine {
 								for (int no = 0; no < 100; no++) {
 									playerOne.update();
 									playerTwo.update();
-									if (no == 66) {
+									if (no >= 66 && no <= 70) {
 										playerOne.client.sendMessage("START");
 										playerTwo.client.sendMessage("START");
 									}
