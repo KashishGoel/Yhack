@@ -1,4 +1,3 @@
-﻿  Inputs.cpp
-DrawPiano.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+﻿DrawPiano.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   Corsarcade.vcxproj -> C:\Users\George\Desktop\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.exe
   Corsarcade.vcxproj -> C:\Users\George\Desktop\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.pdb (Full PDB)

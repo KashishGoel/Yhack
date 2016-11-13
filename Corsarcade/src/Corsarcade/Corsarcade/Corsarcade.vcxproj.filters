@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\DrawPiano.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\DrawTron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\resource.h">
