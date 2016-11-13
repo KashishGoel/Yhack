@@ -1,9 +1,0 @@
-﻿  DrawPiano.cpp
-..\..\..\..\..\..\..\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\DrawPiano.cpp(5): fatal error C1083: Cannot open include file: 'CUESDK.h': No such file or directory
-  DrawPong.cpp
-..\..\..\..\..\..\..\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\DrawPong.cpp(4): fatal error C1083: Cannot open include file: 'CUESDK.h': No such file or directory
-  Inputs.cpp
-C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\thread(8): fatal error C1189: #error:  <thread> is not supported when compiling with /clr or /clr:pure.
-  Main.cpp
-  MyForm.cpp
-  Generating Code...

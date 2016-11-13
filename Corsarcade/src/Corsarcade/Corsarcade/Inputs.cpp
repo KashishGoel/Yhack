@@ -13,7 +13,7 @@ using namespace std;
 
 void sendString(char MOTD[32], SOCKET Connection);
 int drawPiano(int keyID, bool state, int player);
-
+int main();
 void inputsThread(SOCKET Connection, int gameType, int player) {
 	if (gameType == PONG) {
 		bool up = false;
@@ -23,23 +23,26 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 		//sendString("Hello\n", Connection);
 		while (true) {
-
 			if (GetAsyncKeyState(VK_UP) && !up) {
 				up = true;
 				sendString("UpPressed\n", Connection);
+				cout << "UpPressed" << endl;
 			}
 			else if (!GetAsyncKeyState(VK_UP) && up) {
 				up = false;
 				sendString("UpReleased\n", Connection);
+				cout << "UpReleased" << endl;
 			}
 
 			else if (GetAsyncKeyState(VK_DOWN) && !down) {
 				down = true;
 				sendString("DownPressed\n", Connection);
+				cout << "DownPressed" << endl;
 			}
 			else if (!GetAsyncKeyState(VK_DOWN) && down) {
 				down = false;
 				sendString("DownReleased\n", Connection);
+				cout << "DownPressed" << endl;
 			}
 
 			/*	else if (GetAsyncKeyState(VK_LEFT) && !left) {
@@ -72,19 +75,20 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 		//sendString("Hello\n", Connection);
 		while (true) {
-
 			if (GetAsyncKeyState(VK_UP) && !up) {
 				up = true;
-				sendString("Up\n", Connection);
+				sendString("UpPressed\n", Connection);
+				cout << "UpPressed" << endl;
 			}
 			else if (!GetAsyncKeyState(VK_UP) && up) {
 				up = false;
 				sendString("UpReleased\n", Connection);
+				cout << "UpPressed" << endl;
 			}
 
 			else if (GetAsyncKeyState(VK_DOWN) && !down) {
 				down = true;
-				sendString("Down\n", Connection);
+				sendString("DownPressed\n", Connection);
 			}
 			else if (!GetAsyncKeyState(VK_DOWN) && down) {
 				down = false;
@@ -93,7 +97,7 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 			else if (GetAsyncKeyState(VK_LEFT) && !left) {
 				left = true;
-				sendString("Left\n", Connection);
+				sendString("LeftPressed\n", Connection);
 			}
 			else if (!GetAsyncKeyState(VK_LEFT) && left) {
 				left = false;
@@ -102,7 +106,7 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 			else if (GetAsyncKeyState(VK_RIGHT) && !right) {
 				right = true;
-				sendString("Right\n", Connection);
+				sendString("RightPressed\n", Connection);
 			}
 			else if (!GetAsyncKeyState(VK_RIGHT) && right) {
 				right = false;

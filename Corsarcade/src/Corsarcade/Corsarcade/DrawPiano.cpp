@@ -85,11 +85,11 @@ int drawPiano(int keyID, bool state, int player) {
 			vec.push_back(ledColor);
 		}
 		CorsairSetLedsColors(vec.size(), vec.data());
-		//std::this_thread::sleep_for(std::chrono::milliseconds(25));
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}
 
 	if (state) {
-		string file = "C:\\Users\\George\\Desktop\\";
+		string file = "D:\\Documents\\p\\Hackathon\\Yhack\\";
 		file += to_string(orderToKeyboard(keyID));
 		file += ".WAV";
 		cout << "played" << endl;

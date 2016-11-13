@@ -12,7 +12,6 @@ using namespace std;
 #include <windows.h>
 #include <mmsystem.h>
 
-
 //#include "DrawPong.cpp"
 
 int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight, int winState);
@@ -58,10 +57,29 @@ int main()
 		return 0; //Failed to Connect
 	}
 	cout << "Connected!" << std::endl;
+	char gametype[32];
+	cout << "p for pong, P for pool, t for tron!" << std::endl;
+	cin >> gametype;
+	gametype[1] = '\n';
+	cout << "sending" << std::endl;
+	sendString(gametype, Connection);
+	cout << "sent!" << std::endl;
 
+	cout << gametype << std::endl;
 
 	//threading
 	int gameType = PONG;
+	switch (gametype[0]) {
+	case 'p': 
+		gameType = PONG;
+		break;
+	case 'P':
+		gameType = PIANO;
+		break;
+	case 't':
+		gameType = TRON;
+		break;
+	}
 	int player = (int)atof(recvString(Connection).c_str());//1 or 2
 	
 	thread inputs(inputsThread, Connection, gameType, player);
@@ -87,11 +105,11 @@ int main()
 			}
 			if (pongVars == "PONG") {
 				//cout << "yooo" << endl;
-				PlaySound(L"C:\\Users\\George\\Desktop\\pong.WAV", NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
+				PlaySound(L"D:\\Documents\\p\\Hackathon\\Yhack\\pong.wav", NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
 				continue;
 			}
 			if (pongVars == "PING") {
-				PlaySound(L"C:\\Users\\George\\Desktop\\ping.WAV", NULL, SND_FILENAME | SND_ASYNC);
+				PlaySound(L"D:\\Documents\\p\\Hackathon\\Yhack\\ping.wav", NULL, SND_FILENAME | SND_ASYNC);
 				continue;
 			}
 			if (pongVars == "START") {
@@ -108,10 +126,10 @@ int main()
 				i++;
 			}
 			vals[i] = atof(pongVars.c_str());
-			for (int i = 0; i < 16; i++) {
+			/*for (int i = 0; i < 16; i++) {
 				cout << vals[i] << " ";
 			}
-			cout << endl;
+			cout << endl;*/
 			drawTron(vals,  winState);
 			//cout << "trying to read, yo" << endl;
 			//drawPong(100,50,30,60);
@@ -145,17 +163,18 @@ int main()
 			if (pongVars.compare("PONG") == 0) {
 				cout << "played pong" << endl;
 				//cout << "yooo" << endl;
-				PlaySound(L"C:\\Users\\George\\Desktop\\pong.WAV", NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
+				PlaySound(L"D:\\Documents\\p\\Hackathon\\Yhack\\pong.wav", NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
 				continue;
 			}
 			//cout << pongVars << " " << "PING" << (pongVars == "PING") << endl;
 			if (pongVars.compare("PING") == 0) {
 				cout << "played ping" << endl;
-				PlaySound(L"C:\\Users\\George\\Desktop\\ping.WAV", NULL, SND_FILENAME | SND_ASYNC);
+				PlaySound(L"D:\\Documents\\p\\Hackathon\\Yhack\\ping.wav", NULL, SND_FILENAME | SND_ASYNC);
 				continue;
 			}
 			if (pongVars.compare("START") == 0) {
 				winState = 0;
+				continue;
 			}
 			//cout << pongVars << endl;
 			double vals[4]{};
@@ -189,8 +208,8 @@ int main()
 }
 
 void sendString(char MOTD[32], SOCKET Connection) {
-	char MOTD2[16] = "MSG";
-	for (int i = 3; i < 16; i++) {
+	char MOTD2[32] = "MSG";
+	for (int i = 3; i < 32; i++) {
 		MOTD2[i] = MOTD[i - 3];
 	}
 	//cout << MOTD2 << endl;
