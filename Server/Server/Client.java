@@ -16,7 +16,7 @@ public class Client {
 
 	Socket socket;
 	BufferedReader reader;
-	PrintWriter writer;
+	public PrintWriter writer;
 	Lobby lobby;
 	Player player;
 	int playerNo;
@@ -101,13 +101,13 @@ public class Client {
 					if (lobby.gameType == Engine.PONG) {
 						switch (message) {
 						case "UpPressed":
-							player.vSpeed = -0.3;
+							player.vSpeed = -0.4;
 							break;
 						case "UpReleased":
 							player.vSpeed = 0;
 							break;
 						case "DownPressed":
-							player.vSpeed = 0.3;
+							player.vSpeed = 0.4;
 							break;
 						case "DownReleased":
 							player.vSpeed = 0;
@@ -196,9 +196,9 @@ public class Client {
 	public void createPlayer(int playerNo) {
 		this.playerNo = playerNo;
 		if (playerNo == 0) {
-			this.player = new Player(0, 0, 1, 2, Obj.PLAYER_ONE, this);
+			this.player = new Player(0, 0, 1, 1, Obj.PLAYER_ONE, this);
 		} else {
-			this.player = new Player(15, 0, 1, 2, Obj.PLAYER_TWO, this);
+			this.player = new Player(15, 0, 1, 1, Obj.PLAYER_TWO, this);
 		}
 	}
 

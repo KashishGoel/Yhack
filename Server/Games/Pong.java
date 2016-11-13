@@ -9,10 +9,11 @@ public class Pong extends Engine {
 	public int pOnePoints = 0;
 	public int pTwoPoints = 0;
 	public Ball ball;
+	public static double speed = 0.3;
 	
 	public Pong(Player playerOne, Player playerTwo) {
 		super(Engine.PONG, playerOne, playerTwo);
-		ball =new Ball(3, 3, 1, 1, 0.1, 0.1);
+		ball =new Ball(7, 3, 1, 2, speed, speed);
 		objects.add(ball);
 		objects.add(playerOne);
 		objects.add(playerTwo);
@@ -28,12 +29,12 @@ public class Pong extends Engine {
 				case Obj.BALL:
 					if (object.vSpeed > 0) {
 						if (object.y + object.vSpeed >= 5) {
-							object.y = 5 + object.vSpeed;
+							object.y = 6 + object.vSpeed;
 							object.vSpeed *= -1;
 						}
 					} else if (object.vSpeed < 0) {
 						if (object.y + object.vSpeed <= 0) {
-							object.y = 0 + object.vSpeed;
+							object.y = -1 + object.vSpeed;
 							object.vSpeed *= -1;
 						}
 					}
@@ -43,22 +44,46 @@ public class Pong extends Engine {
 								playerTwo.x + playerTwo.width - object.hSpeed,
 								playerTwo.y + playerTwo.height - object.vSpeed)) {
 							object.x=playerTwo.x-1+object.hSpeed;
-							object.hSpeed*=-1;
+							
+							switch((int)(Math.random()*3))
+							{
+							case 0:
+								object.hSpeed = -speed;
+								object.vSpeed = speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
+							case 1:
+								object.hSpeed = -speed*2/3.0;
+								object.vSpeed = 3/2.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
+							case 2:
+								object.hSpeed = -speed*5/4.0;
+								object.vSpeed = 5/4.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
+							}
 						}
 						else if (object.x+object.hSpeed>=16)
 						{
 							pOnePoints ++;
 							broadcast("p");
-							object.x = 3;
+							object.x = 7;
 							object.y=3;
-							object.hSpeed = -0.1;
-							object.vSpeed = -0.1;
+							object.hSpeed = speed;
+							object.vSpeed = speed;
+							playerOne.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
+							playerOne.client.writer.flush();
+							
+							playerTwo.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
+							playerTwo.client.writer.flush();
 							try {
-								Thread.sleep(5000);
+								Thread.sleep(2000);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							object.x = 7;
+							object.y=3;
+							object.hSpeed = speed;
+							object.vSpeed = speed;
 						}
 					}
 					else if (object.hSpeed < 0)
@@ -67,22 +92,46 @@ public class Pong extends Engine {
 								playerOne.x + playerOne.width - object.hSpeed,
 								playerOne.y + playerOne.height - object.vSpeed)) {
 							object.x=playerOne.x + playerOne.width +object.hSpeed;
-							object.hSpeed*=-1;
+							
+							switch((int)(Math.random()*3))
+							{
+							case 0:
+								object.hSpeed = speed;
+								object.vSpeed = speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
+							case 1:
+								object.hSpeed = speed*2/3.0;
+								object.vSpeed = 3/2.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
+							case 2:
+								object.hSpeed = speed*5/4.0;
+								object.vSpeed = 4/5.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
+							}
 						}
 						else if (object.x+object.hSpeed<=-1)
 						{
 							pTwoPoints ++;
 							broadcast("P");
-							object.x = 3;
+							object.x = 7;
 							object.y=3;
-							object.hSpeed = 0.1;
-							object.vSpeed = 0.1;
+							object.hSpeed = speed;
+							object.vSpeed = speed;
+							playerOne.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
+							playerOne.client.writer.flush();
+							
+							playerTwo.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
+							playerTwo.client.writer.flush();
 							try {
-								Thread.sleep(5000);
+								Thread.sleep(2000);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							object.x = 7;
+							object.y=3;
+							object.hSpeed = speed;
+							object.vSpeed = speed;
 						}
 					}
 					break;
