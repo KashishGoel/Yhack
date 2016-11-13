@@ -2,10 +2,13 @@ using namespace std;
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 
 #pragma comment(lib,"ws2_32.lib")
+#pragma comment(lib,"Winmm.lib")
 #include <WinSock2.h>
 #include <iostream>
 #include <string>   
 #include <thread>
+#include <windows.h>
+#include <mmsystem.h>
 //#include "DrawPong.cpp"
 
 int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight, int winState);
@@ -57,6 +60,15 @@ int main()
 			if ((pongVars == "P" && player == 1) || (pongVars == "p" && player == 2)) {
 				winState = -1;
 			}
+			continue;
+		}
+		if (pongVars == "PONG") {
+			//cout << "yooo" << endl;
+			PlaySound(L"C:\\Users\\George\\Desktop\\pong.WAV", NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
+			continue;
+		}
+		if (pongVars == "PING") {
+			PlaySound(L"C:\\Users\\George\\Desktop\\ping.WAV", NULL, SND_FILENAME | SND_ASYNC);
 			continue;
 		}
 		if (pongVars == "START") {

@@ -131,6 +131,16 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\..\include\</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\Corsarcade.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\..\..\..\..\..\ping.wav" />
+    <Media Include="..\..\..\..\..\..\..\pong.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

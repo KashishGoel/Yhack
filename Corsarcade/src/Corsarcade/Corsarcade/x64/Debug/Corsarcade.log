@@ -1,10 +1,5 @@
-﻿  DrawPong.cpp
-c:\users\george\desktop\george's folder\github\yhack\corsarcade\src\corsarcade\corsarcade\drawpong.cpp(116): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\george\desktop\george's folder\github\yhack\corsarcade\src\corsarcade\corsarcade\drawpong.cpp(220): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Client.cpp
-c:\users\george\desktop\george's folder\github\yhack\corsarcade\src\corsarcade\corsarcade\client.cpp(69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-c:\users\george\desktop\george's folder\github\yhack\corsarcade\src\corsarcade\corsarcade\drawpong.cpp(119): warning C4715: 'drawPong': not all control paths return a value
+﻿  Client.cpp
+c:\users\george\desktop\george's folder\github\yhack\corsarcade\src\corsarcade\corsarcade\client.cpp(81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 Client.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   Corsarcade.vcxproj -> C:\Users\George\Desktop\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.exe
   Corsarcade.vcxproj -> C:\Users\George\Desktop\George's Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.pdb (Full PDB)

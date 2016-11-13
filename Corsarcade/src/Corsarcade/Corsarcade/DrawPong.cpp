@@ -50,7 +50,10 @@ double getKeyboardHeight(CorsairLedPositions *ledPositions)
 }
 
 int toNewScale(double val, double oldMax, double max) {
-	return (int)((val / oldMax)*max);
+	int num =(int)((val / oldMax)*max);
+	if (num < 0) num = 0;
+	if (num > (int)(max-.5))num = (int)(max - .5);
+	return num;
 }
 static int ScreenMap[11][6] = {
 	{3/*F2*/, 15/*2*/, 26/*Q*/, 38/*A*/, 51/*Z*/, 63/*Alt*/ },
