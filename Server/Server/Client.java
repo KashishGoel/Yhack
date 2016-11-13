@@ -101,20 +101,30 @@ public class Client {
 					if (lobby.gameType == Engine.PONG) {
 						switch (message) {
 						case "UpPressed":
-							player.vSpeed = -0.4;
+							player.vSpeed = -0.3;
 							if (player.y>= 0)
 							{
-								player.y -= 1.3;
+								player.y -= 0.8;
+								if (player.y <= 0)
+								{
+									player.vSpeed = 0;
+									player.y = 0;
+								}
 							}
 							break;
 						case "UpReleased":
 							player.vSpeed = 0;
 							break;
 						case "DownPressed":
-							player.vSpeed = 0.4;
-							if (player.y <= 7)
+							player.vSpeed = 0.3;
+							if (player.y + player.height <= 6)
 							{
-								player.y+=1.3;
+								player.y+=0.8;
+								if ( player.y + player.height >= 6)
+								{
+									player.vSpeed = 0;
+									player.y = 6- player.height;
+								}
 							}
 							break;
 						case "DownReleased":

@@ -9,7 +9,7 @@ public class Pong extends Engine {
 	public int pOnePoints = 0;
 	public int pTwoPoints = 0;
 	public Ball ball;
-	public static double speed = 0.2;
+	public static double speed = 0.25;
 	
 	public Pong(Player playerOne, Player playerTwo) {
 		super(Engine.PONG, playerOne, playerTwo);
@@ -31,11 +31,22 @@ public class Pong extends Engine {
 						if (object.y + object.vSpeed >= 5) {
 							object.y = 6 + object.vSpeed;
 							object.vSpeed *= -1;
+
+							for (int no = 0; no < 3; no++)
+							{
+								playerOne.client.sendMessage("PING");
+								playerTwo.client.sendMessage("PING");
+							}
 						}
 					} else if (object.vSpeed < 0) {
 						if (object.y + object.vSpeed <= 0) {
 							object.y = -1 + object.vSpeed;
 							object.vSpeed *= -1;
+							for (int no = 0; no < 3; no++)
+							{
+								playerOne.client.sendMessage("PING");
+								playerTwo.client.sendMessage("PING");
+							}
 						}
 					}
 
@@ -45,7 +56,7 @@ public class Pong extends Engine {
 								playerTwo.y + playerTwo.height - object.vSpeed)) {
 							object.x=playerTwo.x-1+object.hSpeed;
 							
-							switch((int)(Math.random()*3))
+							switch((int)(Math.random()*4))
 							{
 							case 0:
 								object.hSpeed = -speed;
@@ -56,13 +67,19 @@ public class Pong extends Engine {
 								object.vSpeed = 3/2.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
 							case 2:
-								object.hSpeed = -speed*5/4.0;
-								object.vSpeed = 5/4.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								object.hSpeed = -speed*4/3.0;
+								object.vSpeed = 3/4.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
 							case 3:
-								object.hSpeed = -speed*1/2.0;
-								object.vSpeed = 2/1.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								object.hSpeed = -speed*3/2.0;
+								object.vSpeed = 2/3.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
+							}
+							
+							for (int no = 0; no < 3; no++)
+							{
+								playerOne.client.sendMessage("PONG");
+								playerTwo.client.sendMessage("PONG");
 							}
 						}
 						else if (object.x+object.hSpeed>=16)
@@ -79,7 +96,20 @@ public class Pong extends Engine {
 							playerTwo.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
 							playerTwo.client.writer.flush();
 							try {
-								Thread.sleep(2000);
+								for (int no = 0; no < 100; no++)
+								{
+									playerOne.update();
+									playerTwo.update();
+									if (no >= 66)
+									{
+										playerOne.client.sendMessage("START");
+										playerTwo.client.sendMessage("START");
+									}
+									playerOne.client.updateClient(this);
+									playerTwo.client.updateClient(this);
+									Thread.sleep(30);
+								}
+								
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -104,13 +134,19 @@ public class Pong extends Engine {
 								object.vSpeed = 3/2.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
 							case 2:
-								object.hSpeed = speed*5/4.0;
-								object.vSpeed = 4/5.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								object.hSpeed = speed*4/3.0;
+								object.vSpeed = 3/4.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
 							case 3:
-								object.hSpeed = speed*1/2.0;
-								object.vSpeed = 2/1.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								object.hSpeed = speed*3/2.0;
+								object.vSpeed = 2/3.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
+							}
+
+							for (int no = 0; no < 3; no++)
+							{
+								playerOne.client.sendMessage("PONG");
+								playerTwo.client.sendMessage("PONG");
 							}
 						}
 						else if (object.x+object.hSpeed<=-1)
@@ -127,7 +163,20 @@ public class Pong extends Engine {
 							playerTwo.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
 							playerTwo.client.writer.flush();
 							try {
-								Thread.sleep(2000);
+								for (int no = 0; no < 100; no++)
+								{
+									playerOne.update();
+									playerTwo.update();
+									if (no >= 66 && no <= 70)
+									{
+										playerOne.client.sendMessage("START");
+										playerTwo.client.sendMessage("START");
+									}
+									playerOne.client.updateClient(this);
+									playerTwo.client.updateClient(this);
+									Thread.sleep(30);
+								}
+								
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
