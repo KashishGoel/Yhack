@@ -97,6 +97,8 @@ public class Client {
 					{
 						break;
 					}
+					
+					System.out.println("Player: " + message);
 
 					if (lobby.gameType == Engine.PONG) {
 						switch (message) {
@@ -161,7 +163,7 @@ public class Client {
 						broadcast(message);
 					}
 					
-					System.out.println("Player: " + message);
+					
 
 				} catch (IOException e) {
 					break;

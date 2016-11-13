@@ -3,6 +3,7 @@ package Server;
 import java.util.ArrayList;
 
 import Games.Engine;
+import Games.Piano;
 import Games.Pong;
 import Games.Tron;
 import Objects.Snake;
@@ -51,7 +52,12 @@ public class Lobby {
 			case Engine.GRAVITY:
 				break;
 			case Engine.PIANO:
-				
+				clients.get(0).createPlayer(0);
+				clients.get(1).createPlayer(1);
+				engine = new Piano(clients.get(0).player, clients.get(1).player);
+				Thread thread2 = new Thread(engine);
+				thread2.start();
+				System.out.println("Piano game started");
 				break;
 			}
 		}
