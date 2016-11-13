@@ -124,7 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\DrawPiano.cpp" />
+    <ClCompile Include="DrawPiano.cpp" />
+    <ClCompile Include="DrawTron.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="DrawPong.cpp" />
     <ClCompile Include="Inputs.cpp" />
@@ -136,37 +137,37 @@
     <ClInclude Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\..\..\..\..\George%27s Folder\GitHub\Yhack\Corsarcade\src\Corsarcade\Corsarcade\Corsarcade.rc" />
+    <Media Include="..\..\..\..\0.wav" />
+    <Media Include="..\..\..\..\1.wav" />
+    <Media Include="..\..\..\..\10.wav" />
+    <Media Include="..\..\..\..\11.wav" />
+    <Media Include="..\..\..\..\12.wav" />
+    <Media Include="..\..\..\..\13.wav" />
+    <Media Include="..\..\..\..\14.wav" />
+    <Media Include="..\..\..\..\15.wav" />
+    <Media Include="..\..\..\..\16.wav" />
+    <Media Include="..\..\..\..\17.wav" />
+    <Media Include="..\..\..\..\18.wav" />
+    <Media Include="..\..\..\..\19.wav" />
+    <Media Include="..\..\..\..\2.wav" />
+    <Media Include="..\..\..\..\20.wav" />
+    <Media Include="..\..\..\..\21.wav" />
+    <Media Include="..\..\..\..\22.wav" />
+    <Media Include="..\..\..\..\23.wav" />
+    <Media Include="..\..\..\..\24.wav" />
+    <Media Include="..\..\..\..\25.wav" />
+    <Media Include="..\..\..\..\3.wav" />
+    <Media Include="..\..\..\..\4.wav" />
+    <Media Include="..\..\..\..\5.wav" />
+    <Media Include="..\..\..\..\6.wav" />
+    <Media Include="..\..\..\..\7.wav" />
+    <Media Include="..\..\..\..\8.wav" />
+    <Media Include="..\..\..\..\9.wav" />
+    <Media Include="..\..\..\..\ping.wav" />
+    <Media Include="..\..\..\..\pong.wav" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\..\..\..\..\..\..\0.wav" />
-    <Media Include="..\..\..\..\..\..\..\1.wav" />
-    <Media Include="..\..\..\..\..\..\..\10.wav" />
-    <Media Include="..\..\..\..\..\..\..\11.wav" />
-    <Media Include="..\..\..\..\..\..\..\12.wav" />
-    <Media Include="..\..\..\..\..\..\..\13.wav" />
-    <Media Include="..\..\..\..\..\..\..\14.wav" />
-    <Media Include="..\..\..\..\..\..\..\15.wav" />
-    <Media Include="..\..\..\..\..\..\..\16.wav" />
-    <Media Include="..\..\..\..\..\..\..\17.wav" />
-    <Media Include="..\..\..\..\..\..\..\18.wav" />
-    <Media Include="..\..\..\..\..\..\..\19.wav" />
-    <Media Include="..\..\..\..\..\..\..\2.wav" />
-    <Media Include="..\..\..\..\..\..\..\20.wav" />
-    <Media Include="..\..\..\..\..\..\..\21.wav" />
-    <Media Include="..\..\..\..\..\..\..\22.wav" />
-    <Media Include="..\..\..\..\..\..\..\23.wav" />
-    <Media Include="..\..\..\..\..\..\..\24.wav" />
-    <Media Include="..\..\..\..\..\..\..\25.wav" />
-    <Media Include="..\..\..\..\..\..\..\3.wav" />
-    <Media Include="..\..\..\..\..\..\..\4.wav" />
-    <Media Include="..\..\..\..\..\..\..\5.wav" />
-    <Media Include="..\..\..\..\..\..\..\6.wav" />
-    <Media Include="..\..\..\..\..\..\..\7.wav" />
-    <Media Include="..\..\..\..\..\..\..\8.wav" />
-    <Media Include="..\..\..\..\..\..\..\9.wav" />
-    <Media Include="..\..\..\..\..\..\..\ping.wav" />
-    <Media Include="..\..\..\..\..\..\..\pong.wav" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

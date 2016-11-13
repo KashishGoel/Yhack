@@ -1,6 +1,7 @@
 using namespace std;
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define PONG 0
+#define TRON 1
 #define PIANO 2
 
 #pragma comment(lib,"ws2_32.lib")
@@ -12,7 +13,7 @@ using namespace std;
 
 void sendString(char MOTD[32], SOCKET Connection);
 int drawPiano(int keyID, bool state, int player);
-
+int main();
 void inputsThread(SOCKET Connection, int gameType, int player) {
 	if (gameType == PONG) {
 		bool up = false;
@@ -22,23 +23,26 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 		//sendString("Hello\n", Connection);
 		while (true) {
-
 			if (GetAsyncKeyState(VK_UP) && !up) {
 				up = true;
 				sendString("UpPressed\n", Connection);
+				cout << "UpPressed" << endl;
 			}
 			else if (!GetAsyncKeyState(VK_UP) && up) {
 				up = false;
 				sendString("UpReleased\n", Connection);
+				cout << "UpReleased" << endl;
 			}
 
 			else if (GetAsyncKeyState(VK_DOWN) && !down) {
 				down = true;
 				sendString("DownPressed\n", Connection);
+				cout << "DownPressed" << endl;
 			}
 			else if (!GetAsyncKeyState(VK_DOWN) && down) {
 				down = false;
 				sendString("DownReleased\n", Connection);
+				cout << "DownPressed" << endl;
 			}
 
 			/*	else if (GetAsyncKeyState(VK_LEFT) && !left) {
@@ -62,7 +66,59 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 			//	//sendString("hello\n", Connection);
 			//	this_thread::sleep_for(chrono::milliseconds(15));
 		}
+	}
+	else if (gameType == TRON) {
+		bool up = false;
+		bool down = false;
+		bool left = false;
+		bool right = false;
+
+		//sendString("Hello\n", Connection);
+		while (true) {
+			if (GetAsyncKeyState(VK_UP) && !up) {
+				up = true;
+				sendString("UpPressed\n", Connection);
+				cout << "UpPressed" << endl;
+			}
+			else if (!GetAsyncKeyState(VK_UP) && up) {
+				up = false;
+				sendString("UpReleased\n", Connection);
+				cout << "UpPressed" << endl;
+			}
+
+			else if (GetAsyncKeyState(VK_DOWN) && !down) {
+				down = true;
+				sendString("DownPressed\n", Connection);
+			}
+			else if (!GetAsyncKeyState(VK_DOWN) && down) {
+				down = false;
+				sendString("DownReleased\n", Connection);
+			}
+
+			else if (GetAsyncKeyState(VK_LEFT) && !left) {
+				left = true;
+				sendString("LeftPressed\n", Connection);
+			}
+			else if (!GetAsyncKeyState(VK_LEFT) && left) {
+				left = false;
+				sendString("LeftReleased\n", Connection);
+			}
+
+			else if (GetAsyncKeyState(VK_RIGHT) && !right) {
+				right = true;
+				sendString("RightPressed\n", Connection);
+			}
+			else if (!GetAsyncKeyState(VK_RIGHT) && right) {
+				right = false;
+				sendString("RightReleased\n", Connection);
+			}
+
+
+
+		}
+		
 	} else if (gameType == PIANO) {
+		drawPiano(0, false, player);
 		bool chars[26]{};
 		while (true) {
 			for (int i = 0; i < 26; i++) {

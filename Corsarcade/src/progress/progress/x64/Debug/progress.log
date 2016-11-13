@@ -1,8 +1,0 @@
-﻿  progress.cpp
-d:\documents\p\hackathon\yhacks\corsarcade\src\progress\progress\progress.cpp(70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  progress.vcxproj -> D:\Documents\p\Hackathon\Yhacks\Corsarcade\src\progress\x64\Debug\progress.exe
-  progress.vcxproj -> D:\Documents\p\Hackathon\Yhacks\Corsarcade\src\progress\x64\Debug\progress.pdb (Full PDB)
-  D:\Documents\p\Hackathon\Yhacks\Corsarcade\src\progress\..\..\bin\x64\CUESDK.x64_2012.dll
-  D:\Documents\p\Hackathon\Yhacks\Corsarcade\src\progress\..\..\bin\x64\CUESDK.x64_2013.dll
-  D:\Documents\p\Hackathon\Yhacks\Corsarcade\src\progress\..\..\bin\x64\CUESDK.x64_2015.dll
-  3 File(s) copied

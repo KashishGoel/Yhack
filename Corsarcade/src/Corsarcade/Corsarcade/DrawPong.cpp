@@ -118,8 +118,8 @@ int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight
 			}
 			vec.push_back(ledColor);
 		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 		CorsairSetLedsColors(vec.size(), vec.data());
-		//std::this_thread::sleep_for(std::chrono::milliseconds(25));
 	}
 }
 int drawPongmap(double xBall, double yBall, double yPaddleLeft, double yPaddleRight)

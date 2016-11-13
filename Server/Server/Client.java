@@ -105,9 +105,18 @@ public class Client {
 					}
 					
 					message = message.substring(message.indexOf("MSG")+3);
-					
-					if (message.equals("Exit"))
+					for (int no = 0; no<message.length(); no++)
 					{
+						if (Character.isLetter(message.charAt(no))|| Character.isDigit(message.charAt(no)))
+						{
+							message =message.substring(no);
+							break;
+						}
+					}
+					
+					if (message.equals("EXIT"))
+					{
+						System.out.println("Player exited");
 						break;
 					}
 					
