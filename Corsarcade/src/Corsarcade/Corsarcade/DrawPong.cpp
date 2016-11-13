@@ -2,7 +2,7 @@
 //
 
 #include "CUESDK.h"
-
+#pragma comment(lib,"Winmm.lib")
 #include <iostream>
 #include <algorithm>
 #include <thread>
@@ -10,6 +10,8 @@
 #include <vector>
 #include <windows.h>
 #include <string>
+#include <windows.h>
+#include <mmsystem.h>
 
 const char* toString(CorsairError error)
 {
@@ -117,7 +119,7 @@ int drawPong(double xBall, double yBall, double yPaddleLeft, double yPaddleRight
 			vec.push_back(ledColor);
 		}
 		CorsairSetLedsColors(vec.size(), vec.data());
-		std::this_thread::sleep_for(std::chrono::milliseconds(25));
+		//std::this_thread::sleep_for(std::chrono::milliseconds(25));
 	}
 }
 int drawPongmap(double xBall, double yBall, double yPaddleLeft, double yPaddleRight)
