@@ -63,6 +63,7 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 			//	this_thread::sleep_for(chrono::milliseconds(15));
 		}
 	} else if (gameType == PIANO) {
+		drawPiano(0, false, player);
 		bool chars[26]{};
 		while (true) {
 			for (int i = 0; i < 26; i++) {
