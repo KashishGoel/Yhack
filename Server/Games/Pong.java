@@ -1,5 +1,7 @@
 package Games;
 
+import java.util.ArrayList;
+
 import Objects.Ball;
 import Objects.Obj;
 import Objects.Player;
@@ -11,10 +13,11 @@ public class Pong extends Engine {
 	public Ball ball;
 	public final static double ORIGINAL = 0.2;
 	public static double speed;
+	public ArrayList<String> winList;
 
 	public Pong(Player playerOne, Player playerTwo) {
 		super(Engine.PONG, playerOne, playerTwo);
-		
+		winList = new ArrayList<String>();
 		speed = ORIGINAL;
 		ball = new Ball(7, 3, 1, 2, speed, speed);
 		objects.add(ball);
@@ -36,7 +39,7 @@ public class Pong extends Engine {
 							object.y = 6 + object.vSpeed;
 							object.vSpeed *= -1;
 
-							for (int no = 0; no < 5; no++) {
+							for (int no = 0; no < 2; no++) {
 								playerOne.client.sendMessage("PING");
 								playerTwo.client.sendMessage("PING");
 							}
@@ -45,7 +48,7 @@ public class Pong extends Engine {
 						if (object.y + object.vSpeed <= 0) {
 							object.y = -1 + object.vSpeed;
 							object.vSpeed *= -1;
-							for (int no = 0; no < 5; no++) {
+							for (int no = 0; no < 2; no++) {
 								playerOne.client.sendMessage("PING");
 								playerTwo.client.sendMessage("PING");
 							}
@@ -77,7 +80,7 @@ public class Pong extends Engine {
 								break;
 							}
 
-							for (int no = 0; no < 5; no++)
+							for (int no = 0; no < 2; no++)
 							{
 							playerOne.client.sendMessage("PONG");
 							playerTwo.client.sendMessage("PONG");
@@ -86,7 +89,16 @@ public class Pong extends Engine {
 							speed += 0;;
 						} else if (object.x + object.hSpeed >= 16) {
 							pOnePoints++;
-							broadcast("p");
+							for(int no=0; no<5;no++)
+							{
+								broadcast("p");
+								try {
+									Thread.sleep(5);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
 							object.x = 14;
 							object.y = 3;
 							object.hSpeed = -speed;
@@ -142,14 +154,24 @@ public class Pong extends Engine {
 								break;
 							}
 
-							for (int no = 0; no < 5; no++) {
+							for (int no = 0; no < 2; no++) {
 								playerOne.client.sendMessage("PONG");
 								playerTwo.client.sendMessage("PONG");
 							}
 							speed += 0;;
 						} else if (object.x + object.hSpeed <= -1) {
 							pTwoPoints++;
-							broadcast("P");
+							for(int no=0; no<5;no++)
+							{
+								broadcast("P");
+								try {
+									Thread.sleep(5);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							
+							}
 							object.x = 1;
 							object.y = 3;
 							object.hSpeed = speed;
@@ -205,7 +227,7 @@ public class Pong extends Engine {
 					System.out.println("3");
 				}
 			}
-
+			
 			object.update();
 		}
 

@@ -41,9 +41,17 @@ public class Server implements Runnable {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				PrintWriter writer = new PrintWriter(socket.getOutputStream());
 				
+				String message = reader.readLine();
+				
+				System.out.println(message);
+				
+				message = message.substring(message.indexOf("MSG")+3);
+				
+				System.out.println(message);
 				
 				// Wait for client input for which game
-				char gameType = Engine.PONG;//reader.readLine().charAt(0);
+				char gameType = message.charAt(0);
+				
 				
 				Lobby thisLobby = null;
 				

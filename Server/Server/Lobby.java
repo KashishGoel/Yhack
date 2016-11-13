@@ -49,8 +49,6 @@ public class Lobby {
 				thread1.start();
 				System.out.println("Tron game started");
 				break;
-			case Engine.GRAVITY:
-				break;
 			case Engine.PIANO:
 				clients.get(0).createPlayer(0);
 				clients.get(1).createPlayer(1);
