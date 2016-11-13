@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class TestClient implements Runnable {
 
-	public static final String IP = "127.0.0.1";
+	public static final String IP = "109.228.50.193";
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);

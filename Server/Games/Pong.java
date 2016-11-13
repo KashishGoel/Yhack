@@ -9,7 +9,7 @@ public class Pong extends Engine {
 	public int pOnePoints = 0;
 	public int pTwoPoints = 0;
 	public Ball ball;
-	public static double speed = 0.3;
+	public static double speed = 0.35;
 	
 	public Pong(Player playerOne, Player playerTwo) {
 		super(Engine.PONG, playerOne, playerTwo);
@@ -59,15 +59,19 @@ public class Pong extends Engine {
 								object.hSpeed = -speed*5/4.0;
 								object.vSpeed = 5/4.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
+							case 3:
+								object.hSpeed = -speed*1/2.0;
+								object.vSpeed = 2/1.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
 							}
 						}
 						else if (object.x+object.hSpeed>=16)
 						{
 							pOnePoints ++;
 							broadcast("p");
-							object.x = 7;
+							object.x = 14;
 							object.y=3;
-							object.hSpeed = speed;
+							object.hSpeed = -speed;
 							object.vSpeed = speed;
 							playerOne.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
 							playerOne.client.writer.flush();
@@ -80,10 +84,6 @@ public class Pong extends Engine {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							object.x = 7;
-							object.y=3;
-							object.hSpeed = speed;
-							object.vSpeed = speed;
 						}
 					}
 					else if (object.hSpeed < 0)
@@ -93,7 +93,7 @@ public class Pong extends Engine {
 								playerOne.y + playerOne.height - object.vSpeed)) {
 							object.x=playerOne.x + playerOne.width +object.hSpeed;
 							
-							switch((int)(Math.random()*3))
+							switch((int)(Math.random()*4))
 							{
 							case 0:
 								object.hSpeed = speed;
@@ -107,16 +107,20 @@ public class Pong extends Engine {
 								object.hSpeed = speed*5/4.0;
 								object.vSpeed = 4/5.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
 								break;
+							case 3:
+								object.hSpeed = speed*1/2.0;
+								object.vSpeed = 2/1.0*speed * Math.abs(object.vSpeed)/object.vSpeed;
+								break;
 							}
 						}
 						else if (object.x+object.hSpeed<=-1)
 						{
 							pTwoPoints ++;
 							broadcast("P");
-							object.x = 7;
+							object.x = 1;
 							object.y=3;
 							object.hSpeed = speed;
-							object.vSpeed = speed;
+							object.vSpeed = -speed;
 							playerOne.client.writer.printf("%.2f %.2f %.2f %.2f\n", ball.x, ball.y, playerOne.y, playerTwo.y);
 							playerOne.client.writer.flush();
 							
@@ -128,10 +132,6 @@ public class Pong extends Engine {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							object.x = 7;
-							object.y=3;
-							object.hSpeed = speed;
-							object.vSpeed = speed;
 						}
 					}
 					break;
