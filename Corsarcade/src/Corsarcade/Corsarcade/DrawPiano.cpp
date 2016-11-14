@@ -89,7 +89,7 @@ int drawPiano(int keyID, bool state, int player) {
 	}
 
 	if (state) {
-		string file = "D:\\Documents\\p\\Hackathon\\Yhack\\";
+		string file = "C:\\Users\\George\\Desktop\\";
 		file += to_string(orderToKeyboard(keyID));
 		file += ".WAV";
 		cout << "played" << endl;

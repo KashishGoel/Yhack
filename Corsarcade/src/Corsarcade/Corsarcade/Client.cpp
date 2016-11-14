@@ -19,7 +19,7 @@ void sendString(char MOTD[32], SOCKET Connection);
 string recvString(SOCKET Connection);
 void inputsThread(SOCKET Connection, int gameType, int player);
 int drawPiano(int keyID, bool state, int player);
-int drawTron(double vals[16], int winState);
+int drawTron(double vals[16], int winState, int player, SOCKET Connection);
 
 void playsound2(LPCWSTR result) {
 	PlaySound(result, NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
@@ -46,7 +46,8 @@ int main()
 
 	SOCKADDR_IN addr; //Address to be binded to our Connection socket
 	int sizeofaddr = sizeof(addr); //Need sizeofaddr for the connect function
-	addr.sin_addr.s_addr = inet_addr("172.26.3.15"); //Address = localhost (this pc)  172.26.2.204  109.228.50.193 172.26.3.15
+	//addr.sin_addr.s_addr = inet_addr("172.26.3.15"); //Address = localhost (this pc)  172.26.2.204  109.228.50.193 172.26.3.15
+	//addr.sin_addr.s_addr = inet_addr("172.26.2.204"); //Address = localhost (this pc)  172.26.2.204  109.228.50.193 172.26.3.15
 	addr.sin_port = htons(4200); //Port = 1111
 	addr.sin_family = AF_INET; //IPv4 Socket
 
@@ -105,11 +106,11 @@ int main()
 			}
 			if (pongVars == "PONG") {
 				//cout << "yooo" << endl;
-				PlaySound(L"D:\\Documents\\p\\Hackathon\\Yhack\\pong.wav", NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
+				PlaySound(L"C:\\Users\\George\\Desktop\\pong.wav", NULL, SND_FILENAME | SND_ASYNC); // SND_FILENAME );//SND_RESOURCE 
 				continue;
 			}
 			if (pongVars == "PING") {
-				PlaySound(L"D:\\Documents\\p\\Hackathon\\Yhack\\ping.wav", NULL, SND_FILENAME | SND_ASYNC);
+				PlaySound(L"C:\\Users\\George\\Desktop\\pong.wav", NULL, SND_FILENAME | SND_ASYNC);
 				continue;
 			}
 			if (pongVars == "START") {
@@ -130,13 +131,14 @@ int main()
 				cout << vals[i] << " ";
 			}
 			cout << endl;*/
-			drawTron(vals,  winState);
+			drawTron(vals, winState, player, Connection);
 			//cout << "trying to read, yo" << endl;
 			//drawPong(100,50,30,60);
 			//this_thread::sleep_for(chrono::milliseconds(60));
 		}
 		else if (gameType == PONG) {
 			string pongVars = recvString(Connection);
+			pongVars = pongVars.substr(0, pongVars.length()-1);
 			/*cout << "start: " << pongVars.length() << endl;// << " PONG " << pongVars.compare("PONG") << endl;
 			if (pongVars.length() == 5) {
 				cout << "start: " << pongVars[0] << endl;
@@ -220,7 +222,7 @@ string recvString(SOCKET Connection) {
 	char MOTD[256];
 	recv(Connection, MOTD, sizeof(MOTD), NULL); //Receive Message of the Day buffer into MOTD array
 	string msg(MOTD);
-	msg = msg.substr(0, msg.find('\n')-1);
+	msg = msg.substr(0, msg.find('\n'));
 	//cout <<"input: "<< msg << " " << msg.length()<<endl;
-	return msg.substr(0, msg.find('\n')-1);
+	return msg.substr(0, msg.find('\n'));
 }

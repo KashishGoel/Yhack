@@ -77,8 +77,8 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 		while (true) {
 			if (GetAsyncKeyState(VK_UP) && !up) {
 				up = true;
-				sendString("UpPressed\n", Connection);
-				cout << "UpPressed" << endl;
+				sendString("Up\n", Connection);
+				cout << "Up" << endl;
 			}
 			else if (!GetAsyncKeyState(VK_UP) && up) {
 				up = false;
@@ -88,7 +88,7 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 			else if (GetAsyncKeyState(VK_DOWN) && !down) {
 				down = true;
-				sendString("DownPressed\n", Connection);
+				sendString("Down\n", Connection);
 			}
 			else if (!GetAsyncKeyState(VK_DOWN) && down) {
 				down = false;
@@ -97,7 +97,7 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 			else if (GetAsyncKeyState(VK_LEFT) && !left) {
 				left = true;
-				sendString("LeftPressed\n", Connection);
+				sendString("Left\n", Connection);
 			}
 			else if (!GetAsyncKeyState(VK_LEFT) && left) {
 				left = false;
@@ -106,7 +106,7 @@ void inputsThread(SOCKET Connection, int gameType, int player) {
 
 			else if (GetAsyncKeyState(VK_RIGHT) && !right) {
 				right = true;
-				sendString("RightPressed\n", Connection);
+				sendString("Right\n", Connection);
 			}
 			else if (!GetAsyncKeyState(VK_RIGHT) && right) {
 				right = false;

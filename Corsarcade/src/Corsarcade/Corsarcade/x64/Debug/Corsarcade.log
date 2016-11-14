@@ -1,4 +1,6 @@
-﻿  Inputs.cpp
+﻿  Client.cpp
+c:\users\george\desktop\yhack\corsarcade\src\corsarcade\corsarcade\client.cpp(123): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\george\desktop\yhack\corsarcade\src\corsarcade\corsarcade\client.cpp(185): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 DrawPiano.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
-  Corsarcade.vcxproj -> D:\Documents\p\Hackathon\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.exe
-  Corsarcade.vcxproj -> D:\Documents\p\Hackathon\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.pdb (Full PDB)
+  Corsarcade.vcxproj -> C:\Users\George\Desktop\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.exe
+  Corsarcade.vcxproj -> C:\Users\George\Desktop\Yhack\Corsarcade\src\Corsarcade\x64\Debug\Corsarcade.pdb (Full PDB)
